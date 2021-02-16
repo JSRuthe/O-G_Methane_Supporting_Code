@@ -25,8 +25,10 @@ For a single uncertainty realization:
 4)	Navigate to the “Inputs tab”. Settings (top rows) should already be preset to those used for the study (Uncert. Runs: 1, Functional unit: Gas, Oil boundary: Field, Gas boundary: Distribution, Co-production: Allocation, Fugitives model: Component).
 5)	Set fields: 200-273. OPGEE generates outputs (carbon intensity or methane leakage rate) on a “field” basis, where a “field” represents an O&NG system with unique properties. In our case, “fields” are the productivity tranches/bins (described in Section 5.1 of the Supplementary Information).
 6)	Click “Run Assessment”. A full assessment of all 74 tranches (corresponding to all US wells) takes approximately 3.5 hours on a standard desktop computer, but possibly longer on a laptop computer.
-7)	Results of the methane emissions subroutine can be viewed on the “VF method – component” tab (see description of how to navigate this tab in Section 4.1 of the Supplementary Information). Total emissions should be within the uncertainty bounds presented in the main manuscript.
+
+Results of the methane emissions subroutine can be viewed on the “VF method – component” tab (see description of how to navigate this tab in Section 4.1 of the Supplementary Information). Total emissions should be within the uncertainty bounds presented in the main manuscript.
 The OPGEE file located in “2_OPGEE_Modelling” has already been seeded with a single uncertainty realization of equipment-level emission factor distributions. However, results presented in the main text of the paper were generated with 100 Monte Carlo uncertainty realizations (where one uncertainty realization corresponds to a separate equipment-level emission factor distribution file). 
+
 For a full uncertainty assessment:
 1)	First, make sure that the Developer tab   is visible.
 2)	Follow steps 1-5 same as above
