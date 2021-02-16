@@ -15,6 +15,12 @@
 % Inputs:
 % 	Equipment vectors are exported from "DATA_PROC_MASTER"
 %
+%   col 1 - 16 = equipment emissions array [kg/d]
+%   col 17 = tranche iteration (1-74)
+%   col 18 = well productivity [kg/well/d]
+%   col 19 = well productivity [scf/well/d]
+%
+%
 % 	row 1  - Wells
 % 	row 2  - Header
 % 	row 3  - Heater
@@ -29,7 +35,8 @@
 % 	row 12 - LU
 % 	row 13 - completions
 % 	row 14 - workovers
-% 	row 16 - Tank Venting
+% 	row 15 - Tank Venting
+%   row 16 - Flare methane
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -49,7 +56,7 @@ n.trial = 20;
 
 %% LOAD DATA
 
-load('equipdata_Set11.mat')
+load('equipdata_Set16_25reals.mat')
 
 %% CALCULATIONS
 
@@ -85,7 +92,7 @@ for k = 1:n.trial
         oilvec(oilvec==0) = NaN;
         oilvec(oilvec < 0) = NaN;
     
-        [s, t, results_tab, gasvectot, oilvectot] = Equip_Plotting_Main(gasvec, oilvec, k, s, t, n, gasvectot, oilvectot, gasvec, oilvec, k, s, t, n, gasvectot, oilvectot, all_equip, tanks_only, figure_all, tableprint, EF_assess);
+        [s, t, results_tab, gasvectot, oilvectot] = Equip_Plotting_Main(gasvec, oilvec, k, s, t, n, gasvectot, oilvectot, all_equip, tanks_only, figure_all, EF_assess);
         %results_tab_all(:,:,k) = results_tab;
   
 end

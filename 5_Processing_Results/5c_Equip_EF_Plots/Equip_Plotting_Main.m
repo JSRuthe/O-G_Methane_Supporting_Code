@@ -1,5 +1,5 @@
-function [s, t, results_tab, gasvectot, oilvectot] = Equip_Plotting_Main(gasvec, oilvec, k, s, t, n, gasvectot, oilvectot, all_equip, tanks_only, figure_all, tableprint, EF_assess)
-
+function [s, t, results_tab, gasvectot, oilvectot] = Equip_Plotting_Main(gasvec, oilvec, k, s, t, n, gasvectot, oilvectot, all_equip, tanks_only, figure_all, EF_assess)
+                                                    
 % Define colors to use in plots
 StanfordRed = [140/255,21/255,21/255]; %Stanford red
 StanfordOrange = [233/255,131/255,0/255];% Stanford orange
@@ -51,17 +51,17 @@ if EF_assess == 1
         oilvectot = vertcat(oilvectot,oilvec);
 
     else
-        loc = gasvectot(:,16) < 10 | (gasvectot(:,16) > 30 & gasvectot(:,16) < 40);
+        loc = gasvectot(:,17) < 10 | (gasvectot(:,17) > 30 & gasvectot(:,17) < 40);
         gasvecmarg = gasvectot(loc,:);
         gasvechi = gasvectot(~loc,:);
 
-        AF = [1;0;0.13;0.69;0.81;0.4;0.4;0.02;0.03;0.18;3; 0.175; 0; 0; 0.4];
+        AF = [1;0;0.13;0.71;0.84;0.41;0.41;0.08;0.03;0.20; 1.87; 0.175; 0; 0; 0.41; 1];
 
-        for jj = 1:15
+        for jj = 1:16
             vec_marg = gasvecmarg(:,jj);
             vec_marg(any(isnan(vec_marg),2),:) = [];
 
-            if jj == 15
+            if jj == 16
                 vec_marg(vec_marg == 0) = [];
             end
 
@@ -87,20 +87,23 @@ if EF_assess == 1
             multiplier(jj,3) = (tot_emissions_marg + tot_emissions_hi)/(tot_equip_marg + tot_equip_hi);
             multiplier(jj,4) = (tot_emissions_tot/tot_equip_tot);
             
+            Prciles_tot = prctile(vec_tot,[2.5 50 97.5]);
             ave_em(jj,3) = mean(vec_tot) * multiplier(jj,4);
+            lo_em(jj,1) = Prciles_tot(1) * multiplier(jj,4);
+            hi_em(jj,1) = Prciles_tot(3) * multiplier(jj,4);
         end
 
-        loc = (oilvectot(:,16) > 60 & oilvectot(:,16) < 64)  | (oilvectot(:,16) > 70 & oilvectot(:,16) < 74);
+        loc = (oilvectot(:,17) > 60 & oilvectot(:,17) < 64)  | (oilvectot(:,17) > 70 & oilvectot(:,17) < 74);
         oilvecmarg = oilvectot(loc,:);
         oilvechi = oilvectot(~loc,:);
 
-        AF = [1;0.23;0.18;0.35;0;0.75;0.75;0;0;0.1;3; 0; 0; 0;0.75];
+        AF = [1;0.22;0.19;0.37;0;0.82;0.82;0;0;0.09;1.11; 0; 0; 0;0.82; 1];
 
-        for jj = 1:15
+        for jj = 1:16
             vec_marg = oilvecmarg(:,jj);
             vec_marg(any(isnan(vec_marg),2),:) = [];
 
-            if jj == 15
+            if jj == 16
                 vec_marg(vec_marg == 0) = [];
             end
 
@@ -127,13 +130,16 @@ if EF_assess == 1
             multiplier(jj,8) = (tot_emissions_tot/tot_equip_tot);
             
             ave_em(jj,6) = mean(vec_tot) * multiplier(jj,8);
-            
+            Prciles_tot = prctile(vec_tot,[2.5 50 97.5]);
+            lo_em(jj,2) = Prciles_tot(1) * multiplier(jj,4);
+            hi_em(jj,2) = Prciles_tot(3) * multiplier(jj,4);            
 
         end
         % Final table
-        Tab_Exp = [multiplier(:,4) ave_em(:,[1,2,3]) multiplier(:,8) ave_em(:,[4,5,6])];
-        Export = [ave_em(:,3), ave_em(:,6)];
-        csvwrite('EFS_ave.csv',Export)
+        Tab_Exp = [multiplier(:,4) ave_em(:,[1,2,3]) lo_em(:,1) hi_em(:,1) multiplier(:,8) ave_em(:,[4,5,6]) lo_em(:,2) hi_em(:,2)];
+        %Export = [ave_em(:,3), ave_em(:,6)];
+        csvwrite('EFS_ave_set16_v2.csv', Tab_Exp)
+        x = 1;
     end
 end
 
@@ -142,6 +148,6 @@ end
 
 if k == n.trial
 
-	Tanks_Plots(gasvec, oilvec)
+	Tanks_Plots(gasvec, oilvec, multiplier, Tab_Exp)
 
 end
