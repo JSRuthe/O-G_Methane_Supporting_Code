@@ -25,11 +25,12 @@ Study = EmissionsGas + EmissionsOil;
 
 GatherData.All = ...
     [Study(6,:) + Study(7,:)+ Study(16,:);...
-     sum(Study(1:5,:))+sum(Study(8:10,:));...
-     Study(11,:);...
+     sum(Study(1:5,:))+sum(Study(8:9,:));...
+     sum(Study(10:11,:));...
      Study(12,:);...
      sum(Study(13:14,:));...
-     Study(15,:)];
+     Study(15,:);...
+     Study(17,:)];
   
 EPAData = ...
     [EPA.All(3);...
@@ -37,7 +38,8 @@ EPAData = ...
      EPA.All(2);...
      EPA.All(5);...
      sum(EPA.All(4));...
-     EPA.All(6)];
+     EPA.All(6);...
+     EPA.All(7)];
 
 GatherData.Ave = mean(GatherData.All,2);
 GatherData.Prc = prctile(GatherData.All,[2.5 97.5],2);
@@ -130,7 +132,7 @@ hold on
 
         if i == 1
             h = cdfplot(study_data);
-            set( h, 'LineStyle', '-','LineWidth',0.2,'Color', StanfordRed,'DisplayName','This study');
+            set( h, 'LineStyle', '-','LineWidth',0.4,'Color', StanfordRed,'DisplayName','This study');
             oplot = cdfplot(omara_data(:,2));
             set( oplot, 'LineStyle', '--','LineWidth',3,'Color', StanfordBlue,'DisplayName','Omara');
 %             line([26 26],[0 1.1],'Color','k','LineStyle','--','DisplayName','26 kg/h');
@@ -139,7 +141,7 @@ hold on
             set(0,'DefaultLegendAutoUpdate','off')
         else
             h = cdfplot(study_data);
-            set( h, 'LineStyle', '-','LineWidth',0.2,'Color', StanfordRed);
+            set( h, 'LineStyle', '-','LineWidth',0.4,'Color', StanfordRed);
         end
     end
     uistack(oplot,'top')
@@ -183,7 +185,7 @@ hold on
         sitedata_All_2_tr(any(isnan(study_data),1),:) = [];
         
         [~,edges] = histcounts(log10(study_data));
-        histogram(study_data,10.^edges,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',0.2,'EdgeColor',StanfordRed);
+        histogram(study_data,10.^edges,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',0.4,'EdgeColor',StanfordRed);
         
 
     end
@@ -251,14 +253,20 @@ hold on
     axis_b = axes('Position',get(axis_a,'Position'),'box','on','xtick',[],'ytick',[]);
     % set original axes as active
     axes(axis_a)
-    
+ 
+%       set(figure(1),'PaperUnits','inches','PaperPosition',[0 0 10 7.5])
+%       figure('Renderer', 'Painters')
+%       saveas(figure(1),'Fig_1.emf','meta');
+
+      print('-painters','-dmeta','Fig_main1.emf');
+      
 figure(2)
     h = histogram(sum(GatherData.All),'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',2,'EdgeColor',Sandstone);
     h.NumBins = 8;
     set(gca,'FontSize',20)
     set(gca,'FontName','Arial')
-    ylim([0 0.4])
-    xlim([5.5 7.5])
+    ylim([0 0.5])
+    xlim([4 9])
     xlabel('Emissions [Tg CH_{4}/yr]');
 %     ylabel('Freq.');
     set(gca,'YMinorTick','on')
@@ -272,13 +280,17 @@ figure(2)
     axes(axis_a)
     pbaspect(axis_a, [1 1 1])
    pbaspect(axis_b, [1 1 1])
-
+   
+%       set(figure(2),'PaperUnits','inches','PaperPosition',[0 0 10 7.5])
+%       figure('Renderer', 'Painters')
+%       saveas(figure(2),'Fig_2.emf','meta');
+      print('-painters','-dmeta','Fig_main2.emf');    
    
 figure(3)
     
-    b = bar(1:6,PlotData.Ave);
+    b = bar(1:7,PlotData.Ave);
     hold on
-    er = errorbar(0.86:1:5.86,GatherData.Ave, GatherData.Lo, GatherData.Hi);
+    er = errorbar(0.86:1:6.86,GatherData.Ave, GatherData.Lo, GatherData.Hi);
     er.Color = [0 0 0];                            
     er.LineStyle = 'none';  
     
@@ -288,9 +300,9 @@ figure(3)
 
     legend(b, {'This study','GHGI'}, 'Location','Best','FontSize',8);
     
-    xlim([0.5 6.5]);    
-    Labels = {'Tanks','Equipment Leaks','Pneumatic Controllers','Liquids Unloadings','Completions & Workovers','Methane slip'};
-    set(gca, 'xtick',1:6, 'XTickLabel', Labels,'XTickLabelRotation',25); 
+    xlim([0.5 7.5]);    
+    Labels = {'Tanks','Equipment Leaks','Pneumatic Devices','Liquids Unloadings','Completions & Workovers','Methane slip','Flare methane'};
+    set(gca, 'xtick',1:7, 'XTickLabel', Labels,'XTickLabelRotation',25); 
     
     set(gca,'FontSize',8)
     set(gca,'FontName','Arial')
@@ -306,7 +318,12 @@ figure(3)
     axis_b = axes('Position',get(axis_a,'Position'),'box','on','xtick',[],'ytick',[]);
     % set original axes as active
     axes(axis_a)
-    
+   
+%       set(figure(3),'PaperUnits','inches','PaperPosition',[0 0 10 7.5])
+%       figure('Renderer', 'Painters')
+%       saveas(figure(3),'Fig_3.emf','meta');
+      print('-painters','-dmeta','Fig_main3.emf');
+      
 figure(4)
 hold on
     for i = 1:n  
@@ -315,7 +332,7 @@ hold on
 
         if i == 1
             h = cdfplot(study_data);
-            set( h, 'LineStyle', '-','LineWidth',0.2,'Color', StanfordRed,'DisplayName','Study');
+            set( h, 'LineStyle', '-','LineWidth',0.4,'Color', StanfordRed,'DisplayName','Study');
             oplot = cdfplot(omara_data(:,2));
             set( oplot, 'LineStyle', '--','LineWidth',3,'Color', StanfordBlue,'DisplayName','Omara');
 %             line([26 26],[0 1.1],'Color','k','LineStyle','--','DisplayName','26 kg/h');
@@ -324,7 +341,7 @@ hold on
             set(0,'DefaultLegendAutoUpdate','off')
         else
             h = cdfplot(study_data);
-            set( h, 'LineStyle', '-','LineWidth',0.2,'Color', StanfordRed);
+            set( h, 'LineStyle', '-','LineWidth',0.4,'Color', StanfordRed);
         end
     end
 
@@ -355,78 +372,81 @@ hold on
             [M, Prciles, Meen] = prcile_sub_v3(study_data, sitedata_All_2_tr);
 
             yyaxis left
+
             [~,edges] = histcounts(log10(M.drygas));
             histogram(M.drygas,10.^edges,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',0.2,'EdgeColor',StanfordRed);
 
-            [~,edges] = histcounts(log10(M.oilwgas));
-            histogram(M.oilwgas,10.^edges,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',0.2,'EdgeColor',LightGrey);
-
-            yyaxis right
-
             [~,edges] = histcounts(log10(M.gaswoil));
             histogram(M.gaswoil,10.^edges,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',0.2,'EdgeColor',Sandstone);
+
+            yyaxis right
+            
+             [~,edges] = histcounts(log10(M.oilwgas));
+             histogram(M.oilwgas,10.^edges,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',0.2,'EdgeColor',LightGrey);
+
+     
     end
     
-    ylim([0 0.11])
+    ylim([0 0.21])
     yyaxis left 
     
-    er = errorbar(Prciles.drygas(2),0.035, (Prciles.drygas(2) - Prciles.drygas(1)), (Prciles.drygas(3) - Prciles.drygas(2)),'horizontal');
+    er = errorbar(Prciles.drygas(2),0.06, (Prciles.drygas(2) - Prciles.drygas(1)), (Prciles.drygas(3) - Prciles.drygas(2)),'horizontal');
             er.Color = StanfordRed;
             er.LineWidth = 1;
             set(get(get(er,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
             hold on
-            ln = plot(Prciles.drygas(2),0.035,'x');
+            ln = plot(Prciles.drygas(2),0.06,'x');
             ln.MarkerEdgeColor = StanfordRed;
             ln.MarkerSize = 6;
 
-            ln_s(3) = plot(Meen.drygas,0.035,'s','DisplayName','Gas Only');
+            ln_s(3) = plot(Meen.drygas,0.06,'s','DisplayName','Gas Only');
             ln_s(3).MarkerEdgeColor = StanfordRed;
             ln_s(3).MarkerFaceColor = StanfordRed;
             ln_s(3).MarkerSize = 6;    label = num2str(Meen.drygas,'%3.2f'); c = cellstr(label);
             
     dy = 0.003;
-    text(double(Meen.drygas), 0.035+dy, c,'Color',StanfordRed, 'FontSize', 7, 'HorizontalAlignment', 'center');
+    text(double(Meen.drygas), 0.06+dy, c,'Color',StanfordRed, 'FontSize', 7, 'HorizontalAlignment', 'center');
 
-	er = errorbar(Prciles.gaswoil(2),0.041, (Prciles.gaswoil(2) - Prciles.gaswoil(1)), (Prciles.gaswoil(3) - Prciles.gaswoil(2)),'horizontal');
+	er = errorbar(Prciles.gaswoil(2),0.066, (Prciles.gaswoil(2) - Prciles.gaswoil(1)), (Prciles.gaswoil(3) - Prciles.gaswoil(2)),'horizontal');
             er.Color = Sandstone;
             er.LineWidth = 1;
             set(get(get(er,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
             hold on
-            ln = plot(Prciles.gaswoil(2),0.041,'x');
+            ln = plot(Prciles.gaswoil(2),0.066,'x');
             ln.MarkerEdgeColor = Sandstone;
             ln.MarkerSize = 6;
 
-            ln_s(2) = plot(Meen.gaswoil,0.041,'s','DisplayName','Gas + Oil');
+            ln_s(2) = plot(Meen.gaswoil,0.066,'s','DisplayName','Gas + Oil');
             ln_s(2).MarkerEdgeColor = Sandstone;
             ln_s(2).MarkerFaceColor = Sandstone;
             ln_s(2).MarkerSize = 6;    label = num2str(Meen.gaswoil,'%3.2f'); c = cellstr(label);
             
         dy = 0.003;
-        text(double(Meen.gaswoil), 0.041+dy, c,'Color',Sandstone, 'FontSize', 7, 'HorizontalAlignment', 'center');
+        text(double(Meen.gaswoil), 0.066+dy, c,'Color',Sandstone, 'FontSize', 7, 'HorizontalAlignment', 'center');
 
-	er = errorbar(Prciles.oilwgas(2),0.047, (Prciles.oilwgas(2) - Prciles.oilwgas(1)), (Prciles.oilwgas(3) - Prciles.oilwgas(2)),'horizontal');
+	er = errorbar(Prciles.oilwgas(2),0.072, (Prciles.oilwgas(2) - Prciles.oilwgas(1)), (Prciles.oilwgas(3) - Prciles.oilwgas(2)),'horizontal');
             er.Color = LightGrey;
             er.LineWidth = 1;
             set(get(get(er,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
             hold on
-            ln = plot(Prciles.oilwgas(2),0.047,'x');
+            ln = plot(Prciles.oilwgas(2),0.072,'x');
             ln.MarkerEdgeColor = LightGrey;
             ln.MarkerSize = 6;
 
-            ln_s(1) = plot(Meen.oilwgas,0.047,'s','DisplayName','Oil + Gas');
+            ln_s(1) = plot(Meen.oilwgas,0.072,'s','DisplayName','Oil + Gas');
             ln_s(1).MarkerEdgeColor = LightGrey;
             ln_s(1).MarkerFaceColor = LightGrey;
             ln_s(1).MarkerSize = 6;    label = num2str(Meen.oilwgas,'%3.2f'); c = cellstr(label);
            
         dy = 0.003;
-        text(double(Meen.oilwgas), 0.047+dy, c,'Color',LightGrey, 'FontSize', 7, 'HorizontalAlignment', 'center');
+        text(double(Meen.oilwgas), 0.072+dy, c,'Color',LightGrey, 'FontSize', 7, 'HorizontalAlignment', 'center');
 
 
     lgd = legend(ln_s,'location','NorthWest');
     lgd.FontSize = 8;
     set(0,'DefaultLegendAutoUpdate','off')
             
-    ylim([0 0.055]) 
+    ylim([0 0.09]) 
     set(gca,'xscale','log')
     set(gca,'FontSize',8)
     set(gca,'XTick',[10^-4 10^-2 10^0 10^2]);
@@ -518,3 +538,69 @@ set(axis_a,'box','off','color','none')
 axis_b = axes('Position',get(axis_a,'Position'),'box','on','xtick',[],'ytick',[]);
 % set original axes as active
 axes(axis_a)
+
+for i = 2:100
+
+         totals_vec(i - 1) = GatherData.SumTot(i);
+         
+         mu_total(i) = mean(totals_vec);
+         std_total(i) = std(totals_vec);
+         
+         abs_err(i) = (1.645*std_total(i))/sqrt(i);
+end
+
+figure(7)
+subplot(1,2,1)
+hold on
+plot(mu_total,'Color',StanfordRed,'LineWidth',2);
+
+x = 1:99;
+scatter(x,totals_vec,10, 'k');
+
+xlabel('Monte Carlo Realizations');
+ylabel({'\mu_{CH_{4}} [Tg CH_{4}/yr]'});
+set(gca,'FontSize',10)
+set(gca,'FontName','Arial')
+ylim([4 9]);
+
+subplot(1,2,2)
+hold on
+plot(abs_err,'Color',StanfordRed,'LineWidth',2);
+
+xlabel('Monte Carlo Realizations');
+ylabel({'90% confidence interval for','\mu_{CH_{4}} [Tg CH_{4}/yr]'});
+set(gca,'FontSize',10)
+set(gca,'FontName','Arial')
+
+ data_shuffle = datasample(GatherData.SumTot,100,'Replace',false);
+%  
+%  for i = 2:100
+% 
+%          totals_vec2(i - 1) = data_shuffle(i);
+%          
+%          mu_total2(i) = mean(totals_vec2);
+%          std_total2(i) = std(totals_vec2);
+%          
+%          abs_err2(i) = (1.645*std_total2(i))/sqrt(i);
+% end
+% 
+% figure(9)
+% hold on
+%  
+% plot(mu_total2);
+% 
+% xlabel('n');
+% ylabel({'US 2015 CH_{4} [Tg CH_{4}/yr]'});
+% legend('show','location','NorthEast');
+% 
+% set(gca,'FontSize',12)
+% set(gca,'FontName','Arial')
+% 
+% figure(10)
+% hold on
+% plot(abs_err2);
+% 
+% xlabel('n');
+% ylabel({'US 2015 CH_{4} [Tg CH_{4}/yr]'});
+% set(gca,'FontSize',12)
+% set(gca,'FontName','Arial')
