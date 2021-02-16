@@ -47,8 +47,8 @@
 %       col 3 = sample (wells/sample size)
 %       col 4 = well productivity [kg/well/d]
 %       col 5 = well productivity [scf/well/d]
-%       col 6 - 20 = equipment array
-%       col 21 = sum of equipment array
+%       col 6 - 21 = equipment array
+%       col 22 = sum of equipment array
 %
 % Output data:
 %
@@ -69,6 +69,7 @@
 %       row 14 - workovers
 %       row 15 - Combustion
 %       row 16 - Tank Venting
+%       row 17 - Flare methane
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -78,11 +79,11 @@ clear; clc; close all;
 %% Inputs
 
 % Set total trials
-n.trial = 25;
+n.trial = 100;
 
 % Binary options
     welloption = 0;
-    equipoption = 1;
+    equipoption = 0;
 
 %% Begin data processing
     
@@ -151,7 +152,7 @@ for k = 1:n.trial
         equipdata_tot.oil(:,:,k) = equipdata.oil;
         
         if k == n.trial
-           save('equipdata_Set11.mat','equipdata_tot', '-v7.3'); 
+           save('equipdata_Set16_25reals.mat','equipdata_tot', '-v7.3'); 
         end
         
     end
@@ -159,7 +160,7 @@ for k = 1:n.trial
 end
 
 
-save('Emissionsdata_Set11_v2.mat','EmissionsGas','EmissionsOil','Superemitters');
+save('Emissionsdata_set16_1-100.mat','EmissionsGas','EmissionsOil','Superemitters');
 
 
 sitedata_All = sitedata_All(:,[2 4 6],:);
