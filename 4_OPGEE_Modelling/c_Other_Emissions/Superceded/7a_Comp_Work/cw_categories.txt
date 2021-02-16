@@ -1,0 +1,18 @@
+Categories
+
+Gas
+1	Non-HF / vented
+2	Non-HF / flared
+3	HF / Non-REC / Venting
+4	HF / Non-REC / Flaring
+5	HF / REC / Venting
+6	HF / REC / Flaring
+
+Oil
+1	Non-HF / vented
+2	HF / Non-REC / Venting
+3	HF / Non-REC / Flaring
+4	HF / REC / Venting
+5	HF / REC / Flaring
+
+
