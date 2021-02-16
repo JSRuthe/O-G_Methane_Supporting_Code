@@ -33,7 +33,7 @@ For a full uncertainty assessment:
 1)	First, make sure that the Developer tab   is visible.
 2)	Follow steps 1-5 same as above
 3)	Download all equipment-level emission factor distributions in the folder: “\4_OPGEE_Modelling\b_OPGEE_runs\Inputs”. Save files to the same folder as the OPGEE Excel file.
-4)	Navigate to the Macros menu in the Developer tab. Scroll to the bottom of the list, select the “Ultrabulk_assessment” macro, then click “Edit”.
+4)	Navigate to the Macros menu in the [Developer tab](https://support.microsoft.com/en-us/office/show-the-developer-tab-e1192344-5e56-4d45-931b-e5fd9bea2d45). Scroll to the bottom of the list, select the “Ultrabulk_assessment” macro, then click “Edit”.
 5)	Navigate to the “Autorun macro” (On left hand side of VBA terminal, double click on “AutoRun” in the modules folder). 
 6)	In the “Autorun” macro, edit “StrText” to the folder where you will run OPGEE. Do not remove “\Equip” at the end of the folder path. The general form should be:
 
