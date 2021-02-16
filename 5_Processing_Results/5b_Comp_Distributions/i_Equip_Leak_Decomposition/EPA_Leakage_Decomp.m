@@ -19,6 +19,20 @@
 %   (ii) Upper-bound and lower-bound component-count matrices for oil and
 %   gas systems.
 %   (iii) Fraction of components leaking: FractionLeaking.csv
+%   (iv) Equipment level data
+%       EFs_ave - Average equipment-level emission factors copy and pasted
+%       from Tables_Final_Plots on February 12, 2021
+%       Equipvecs_Set16 - Saved vectors from first realizations of Set 16
+%       OPGEE results on February 12, 2021
+%           load('equipdata_Set16_25reals.mat')
+%           study_well.gas = cat(2, equipdata_tot.drygas(:,1,1), equipdata_tot.gaswoil(:,1,1));
+%           study_well.gas = cat(1, equipdata_tot.drygas(:,1,1), equipdata_tot.gaswoil(:,1,1));
+%           study_well.oil = cat(1, equipdata_tot.oil(:,1,1), equipdata_tot.assoc(:,1,1));
+%           study_sep.oil = cat(1, equipdata_tot.oil(:,4,1), equipdata_tot.assoc(:,4,1));
+%           study_sep.gas = cat(1, equipdata_tot.drygas(:,4,1), equipdata_tot.gaswoil(:,4,1));
+%           study_met.gas = cat(1, equipdata_tot.drygas(:,5,1), equipdata_tot.gaswoil(:,5,1));
+%           study_met.oil = cat(1, equipdata_tot.oil(:,5,1), equipdata_tot.assoc(:,5,1));
+%           save('equipvecs_Set16.mat','study_well', 'study_sep', 'study_met');
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -100,7 +114,10 @@ for i = 1:4
 
     Leakage_Plotting(StudyHi,EPA_Comp,i, z)
 
-     set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 3.25])
-     print('-djpeg','-r600',sprintf('MET_SI_Set11_nolbl_%d.jpg',i));
-    
+      set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 3.25])
+      %print('-djpeg','-r300',sprintf('WELL_SI_Set16_nolbl_%d.jpg',i));
+      %print('-dtiff','-r600',sprintf('WELL_SI_Set16_lbl_%d.tif',i));
+      %print('-dpdf','-r600',sprintf('WELL_SI_Set16_nolbl_%d.pdf',i));
+      figure('Renderer', 'Painters')
+      saveas(gcf,sprintf('WELL_SI_Set16_lbl_%d.emf',i),'meta');
 end

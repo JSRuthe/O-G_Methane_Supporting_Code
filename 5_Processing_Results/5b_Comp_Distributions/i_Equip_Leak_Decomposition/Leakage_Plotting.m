@@ -44,18 +44,10 @@ function Leakage_Plotting(StudyHi,EPA_Comp,i, z)
         CQ.AveGas = mean(temp,3);
         
 	% Study equipment data
-		
-    % Note regarding equipment level emissions factors:
 
-    % We are comparing population factors (including the contribution
-    % of "zero" events in our plot against EPA, therefore we need
-    % to multiply the vector by the "multiplier" calculated in the Matlab file
-    % "EquipPlots_v21". Here, we multiply the equipvec by the "multiplier" 
-    % [which is basically a fraction emitting value]
-    % (emitters/ emitters + non-emitters)
     
-        load 'Equipvecs_Set11';
-        EF_Ave = importdata('EFS_ave.csv');
+        load 'equipvecs_Set16';
+        EF_Ave = importdata('EFS_ave_set16.csv');
         
         if z == 1
             x = {'Oil wells'};
@@ -125,7 +117,7 @@ axes(ha(1));
 %         dy = 1.5;
 %         label = num2str(leaker,'%3.2f'); c = cellstr(label);
 %         text(j + 0.5, double(leaker)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
-            
+%             
     end
    
 
@@ -282,37 +274,40 @@ axes(ha(4));
         
         if z == 1
             equip_tot = study_well.gas;
-            Average_EF = EF_Ave(1,1);
-            x = {'Gas wells'};
+            Average_EF = EF_Ave(1,4);
+            x = {'Gas wellhead'};
         elseif z == 2
             equip_tot = study_sep.gas;
-            Average_EF = EF_Ave(4,1);
+            Average_EF = EF_Ave(4,4);
             x = {'Gas separator'};
         else
-            equip_tot = study_meter.gas;
-            Average_EF = EF_Ave(5,1);
+            equip_tot = study_met.gas;
+            Average_EF = EF_Ave(5,4);
             x = {'Gas meter'};
         end
-
+        
+        equip_tot(equip_tot == 0) = [];
+        equip_tot(any(isnan(equip_tot),2),:) = [];
         Prciles_tot = prctile(equip_tot,[2.5 50 97.5]);
         
     else
         
         if z == 1
             equip_tot = study_well.oil;
-            Average_EF = EF_Ave(1,2);
-            x = {'Oil wells'};
+            Average_EF = EF_Ave(1,8);
+            x = {'Oil wellhead'};
         elseif z == 2
             equip_tot = study_sep.oil;
-            Average_EF = EF_Ave(4,2);
+            Average_EF = EF_Ave(4,8);
             x = {'Oil separator'};
         else
-            equip_tot = study_meter.oil;
-            Average_EF = EF_Ave(5,2);
+            equip_tot = study_met.oil;
+            Average_EF = EF_Ave(5,8);
             x = {'Oil meter'};
         end
 
-        
+        equip_tot(equip_tot == 0) = [];
+        equip_tot(any(isnan(equip_tot),2),:) = [];
         Prciles_tot = prctile(equip_tot,[2.5 50 97.5]);
         
     end
