@@ -8,31 +8,32 @@ data = dataraw;
 % Study.All
 
 %    gas  oil  dataraw	
-% row 1  (17) (6) - Wells
-% row 2  (18) (7) - Header
-% row 3  (19) (8) - Heater
-% row 4  (20) (9) - separators
-% row 5  (21) (10) - Meter
-% row 6  (22) (11) - Tanks - leaks
-% row 7  (23) (12) - Tanks - vents
-% row 8  (24) (13) - Recip Compressor
-% row 9  (25) (14) - Dehydrators
-% row 10 (26) (15) - CIP
-% row 11 (27) (16) - PC
-% row 12 (28) (17) - LU
-% row 13 (29) (18) - completions
-% row 14 (30) (19) - workovers
-% row 15 (31) (x) - Combustion
-% row 16 (32) (20) - Tank Venting
+% row 1  (18) (6) - Wells
+% row 2  (19) (7) - Header
+% row 3  (20) (8) - Heater
+% row 4  (21) (9) - separators
+% row 5  (22) (10) - Meter
+% row 6  (23) (11) - Tanks - leaks
+% row 7  (24) (12) - Tanks - vents
+% row 8  (25) (13) - Recip Compressor
+% row 9  (26) (14) - Dehydrators
+% row 10 (27) (15) - CIP
+% row 11 (28) (16) - PC
+% row 12 (29) (17) - LU
+% row 13 (30) (18) - completions
+% row 14 (31) (19) - workovers
+% row 15 (32) (x) - Combustion
+% row 16 (33) (20) - Tank Venting
+% row 17 (34) (21) - Flare methane
 
 
 %% Replace completions and workovers with 
-% Output from C_and_W_v1.m
+% Non-flaring C&W from GHGRP_Master
 
-Gas.workovers = 6.235; % MTCH4/year
-Gas.completions = 33.411; % MTCH4/year
-Oil.workovers = 1.623; % MTCH4/year
-Oil.completions = 106.255; % MTCH4/year
+Gas.workovers = 2.3; % MTCH4/year
+Gas.completions = 34.0; % MTCH4/year
+Oil.workovers = 0; % MTCH4/year
+Oil.completions = 68.5; % MTCH4/year
 
 Gas.workovers = Gas.workovers *(1/1000); %Tg/year
 Gas.completions = Gas.completions *(1/1000); %Tg/year
@@ -60,8 +61,8 @@ Gas.Combustion = 0.0285; % Tg/year
 
     data = matpartextend_full;
     dataplot.gas = matpartextend_full;
-    dataplot.gas(:,21) = sum(dataplot.gas(:,6:20),2);
-    dataplot.gas(:,22) = dataplot.gas(:,21)./dataplot.gas(:,4);
+    dataplot.gas(:,22) = sum(dataplot.gas(:,6:21),2);
+    dataplot.gas(:,23) = dataplot.gas(:,22)./dataplot.gas(:,4);
 
     dataplot.drygas = dataplot.gas((dataplot.gas(:,2) < 230),:);
     dataplot.gaswoil = dataplot.gas((dataplot.gas(:,2) > 229 & data(:,2) < 260),:);
@@ -250,25 +251,25 @@ Gas.Combustion = 0.0285; % Tg/year
     %% CIJ (gas)
 
     %Data prep
-%         Gas.CIJ = data(:,13);
-%         Gas.CIJ(Gas.CIJ==0) = NaN;
-%         ind = isnan(Gas.CIJ);
-%         Gas.CIJ = Gas.CIJ(~ind);
-%         SortC = sort(Gas.CIJ,'descend');
-%         SumC = nansum(Gas.CIJ);
-%         NormSortC = SortC/SumC;
-%         CumCNorm = cumsum(NormSortC);
-%         CumC = cumsum(SortC);
-%         Perc5Location(8) = ceil(length(Gas.CIJ)*0.05);
+        Gas.CIJ = data(:,15);
+        Gas.CIJ(Gas.CIJ==0) = NaN;
+        ind = isnan(Gas.CIJ);
+        Gas.CIJ = Gas.CIJ(~ind);
+        SortC = sort(Gas.CIJ,'descend');
+        SumC = nansum(Gas.CIJ);
+        NormSortC = SortC/SumC;
+        CumCNorm = cumsum(NormSortC);
+        CumC = cumsum(SortC);
+        Perc5Location(10) = ceil(length(Gas.CIJ)*0.05);
 
     %Parameters
-%         ContributionPerc5(8) = CumC(Perc5Location(8));
-%         ContributionPerc5Norm(8) = CumCNorm(Perc5Location(8));
-%         Minimum(8) = min(Gas.CIJ);
-%         Maximum(8) = max(Gas.CIJ);
-%         Average(8) = mean(Gas.CIJ);
-%         MedC(8) = median(Gas.CIJ);
-%         SumEmissions(8) = sum(Gas.CIJ);
+        ContributionPerc5(10) = CumC(Perc5Location(10));
+        ContributionPerc5Norm(10) = CumCNorm(Perc5Location(10));
+        Minimum(10) = min(Gas.CIJ);
+        Maximum(10) = max(Gas.CIJ);
+        Average(10) = mean(Gas.CIJ);
+        MedC(10) = median(Gas.CIJ);
+        SumEmissions(10) = sum(Gas.CIJ);
 
  %% PC (gas)
 
@@ -408,6 +409,11 @@ Gas.Combustion = 0.0285; % Tg/year
         MedC(16) = median(Gas. TV);
         SumEmissions(16) = sum(Gas.TV);
 
+    %% Flare methane (gas)
+
+    % N/A
+    
+        
 %% Save Equipment for plotting
 
 % well = Gas.W;
@@ -441,14 +447,14 @@ data= dataraw;
     data = matpartextend_full;
 
     dataplot.assoc = data(data(:,2) < 270 & data(:,2) > 259,:);
-    dataplot.assoc(:,21) = sum(dataplot.assoc(:,6:20),2);
-    dataplot.assoc(:,22) = dataplot.assoc(:,21)./dataplot.assoc(:,4);
+    dataplot.assoc(:,22) = sum(dataplot.assoc(:,6:21),2);
+    dataplot.assoc(:,23) = dataplot.assoc(:,22)./dataplot.assoc(:,4);
 %     dataplot.assoc(:,1) = dataplot.assoc(:,1) + 60;
     dataplot.assoc(:,1) = dataplot.assoc(:,1);
 
     dataplot.oil = data(data(:,2) > 269,:);
-    dataplot.oil(:,21) = sum(dataplot.oil(:,6:20),2);
-    dataplot.oil(:,22) = dataplot.oil(:,21)./dataplot.oil(:,4);
+    dataplot.oil(:,22) = sum(dataplot.oil(:,6:21),2);
+    dataplot.oil(:,23) = dataplot.oil(:,22)./dataplot.oil(:,4);
 %     dataplot.oil(:,1) = dataplot.oil(:,1) + 60;
     dataplot.oil(:,1) = dataplot.oil(:,1);
     %% Wells (oil)
@@ -463,16 +469,16 @@ data= dataraw;
         NormSortC = SortC/SumC;
         CumCNorm = cumsum(NormSortC);
         CumC = cumsum(SortC);
-        Perc5Location(17) = ceil(length(Oil.W)*0.05);
+        Perc5Location(18) = ceil(length(Oil.W)*0.05);
 
     % Parameters
-        ContributionPerc5(17) = CumC(Perc5Location(17));
-        ContributionPerc5Norm(17) = CumCNorm(Perc5Location(17));
-        Minimum(17) = min(Oil.W);
-        Maximum(17) = max(Oil.W);
-        Average(17) = mean(Oil.W);
-        MedC(17) = median(Oil.W);
-        SumEmissions(17) = sum(Oil.W);
+        ContributionPerc5(18) = CumC(Perc5Location(18));
+        ContributionPerc5Norm(17) = CumCNorm(Perc5Location(18));
+        Minimum(18) = min(Oil.W);
+        Maximum(18) = max(Oil.W);
+        Average(18) = mean(Oil.W);
+        MedC(18) = median(Oil.W);
+        SumEmissions(18) = sum(Oil.W);
         
     %% Header (oil)
 
@@ -486,16 +492,16 @@ data= dataraw;
         NormSortC = SortC/SumC;
         CumCNorm = cumsum(NormSortC);
         CumC = cumsum(SortC);
-        Perc5Location(18) = ceil(length(Oil.HD)*0.05);
+        Perc5Location(19) = ceil(length(Oil.HD)*0.05);
 
     % Parameters
-        ContributionPerc5(18) = CumC(Perc5Location(18));
-        ContributionPerc5Norm(18) = CumCNorm(Perc5Location(18));
-        Minimum(18) = min(Oil.HD);
-        Maximum(18) = max(Oil.HD);
-        Average(18) = mean(Oil.HD);
-        MedC(18) = median(Oil.HD);
-        SumEmissions(18) = sum(Oil.HD);   
+        ContributionPerc5(19) = CumC(Perc5Location(19));
+        ContributionPerc5Norm(19) = CumCNorm(Perc5Location(19));
+        Minimum(19) = min(Oil.HD);
+        Maximum(19) = max(Oil.HD);
+        Average(19) = mean(Oil.HD);
+        MedC(19) = median(Oil.HD);
+        SumEmissions(19) = sum(Oil.HD);   
 
     %% Heater (oil)
 
@@ -511,14 +517,14 @@ data= dataraw;
         CumC = cumsum(SortC);
 
     % Parameters
-        Perc5Location(19) = ceil(length(Oil.H)*0.05);
-        ContributionPerc5(19) = CumC(Perc5Location(19));
-        ContributionPerc5Norm(19) = CumCNorm(Perc5Location(19));
-        Minimum(19) = min(Oil.H);
-        Maximum(19) = max(Oil.H);
-        Average(19) = mean(Oil.H);
-        MedC(19) = median(Oil.H);
-        SumEmissions(19) = sum(Oil.H);
+        Perc5Location(20) = ceil(length(Oil.H)*0.05);
+        ContributionPerc5(20) = CumC(Perc5Location(20));
+        ContributionPerc5Norm(20) = CumCNorm(Perc5Location(20));
+        Minimum(20) = min(Oil.H);
+        Maximum(20) = max(Oil.H);
+        Average(20) = mean(Oil.H);
+        MedC(20) = median(Oil.H);
+        SumEmissions(20) = sum(Oil.H);
             
     %% Oil separators
 
@@ -532,16 +538,16 @@ data= dataraw;
         NormSortC = SortC/SumC;
         CumCNorm = cumsum(NormSortC);
         CumC = cumsum(SortC);
-        Perc5Location(20) = ceil(length(Oil.S)*0.05);
+        Perc5Location(21) = ceil(length(Oil.S)*0.05);
 
     % Parameters
-        ContributionPerc5(20) = CumC(Perc5Location(20));
-        ContributionPerc5Norm(20) = CumCNorm(Perc5Location(20));
-        Minimum(20) = min(Oil.S);
-        Maximum(20) = max(Oil.S);
-        Average(20) = mean(Oil.S);
-        MedC(20) = median(Oil.S);
-        SumEmissions(20) = sum(Oil.S);
+        ContributionPerc5(21) = CumC(Perc5Location(21));
+        ContributionPerc5Norm(21) = CumCNorm(Perc5Location(21));
+        Minimum(21) = min(Oil.S);
+        Maximum(21) = max(Oil.S);
+        Average(21) = mean(Oil.S);
+        MedC(21) = median(Oil.S);
+        SumEmissions(21) = sum(Oil.S);
 
     %% Tanks - leaks(oil)
 
@@ -555,16 +561,16 @@ data= dataraw;
         NormSortC = SortC/SumC;
         CumCNorm = cumsum(NormSortC);
         CumC = cumsum(SortC);
-        Perc5Location(22) = ceil(length(Oil.TKl)*0.05);
+        Perc5Location(23) = ceil(length(Oil.TKl)*0.05);
 
     % Parameters
-        ContributionPerc5(22) = CumC(Perc5Location(22));
-        ContributionPerc5Norm(22) = CumCNorm(Perc5Location(22));
-        Minimum(22) = min(Oil.TKl);
-        Maximum(22) = max(Oil.TKl);
-        Average(22) = mean(Oil.TKl);
-        MedC(22) = median(Oil.TKl);
-        SumEmissions(22) = sum(Oil.TKl);
+        ContributionPerc5(23) = CumC(Perc5Location(23));
+        ContributionPerc5Norm(23) = CumCNorm(Perc5Location(23));
+        Minimum(23) = min(Oil.TKl);
+        Maximum(23) = max(Oil.TKl);
+        Average(23) = mean(Oil.TKl);
+        MedC(23) = median(Oil.TKl);
+        SumEmissions(23) = sum(Oil.TKl);
 
     %% Tanks - vents(oil)
 
@@ -578,39 +584,39 @@ data= dataraw;
         NormSortC = SortC/SumC;
         CumCNorm = cumsum(NormSortC);
         CumC = cumsum(SortC);
-        Perc5Location(23) = ceil(length(Oil.TKv)*0.05);
+        Perc5Location(24) = ceil(length(Oil.TKv)*0.05);
 
     % Parameters
-        ContributionPerc5(23) = CumC(Perc5Location(23));
-        ContributionPerc5Norm(23) = CumCNorm(Perc5Location(23));
-        Minimum(23) = min(Oil.TKv);
-        Maximum(23) = max(Oil.TKv);
-        Average(23) = mean(Oil.TKv);
-        MedC(23) = median(Oil.TKv);
-        SumEmissions(23) = sum(Oil.TKv);
+        ContributionPerc5(24) = CumC(Perc5Location(24));
+        ContributionPerc5Norm(24) = CumCNorm(Perc5Location(24));
+        Minimum(24) = min(Oil.TKv);
+        Maximum(24) = max(Oil.TKv);
+        Average(24) = mean(Oil.TKv);
+        MedC(24) = median(Oil.TKv);
+        SumEmissions(24) = sum(Oil.TKv);
 
      %% CIP (oil)
 
     % Data prep
-%         Oil.CIP = data(:,13);
-%         Oil.CIP(Oil.CIP==0) = NaN;
-%         ind = isnan(Oil.CIP);
-%         Oil.CIP = Oil.CIP(~ind);
-%         SortC = sort(Oil.CIP,'descend');
-%         SumC = nansum(Oil.CIP);
-%         NormSortC = SortC/SumC;
-%         CumCNorm = cumsum(NormSortC);
-%         CumC = cumsum(SortC);
-%         Perc5Location(24) = ceil(length(Oil.CIP)*0.05);
-% 
+        Oil.CIP = data(:,15);
+        Oil.CIP(Oil.CIP==0) = NaN;
+        ind = isnan(Oil.CIP);
+        Oil.CIP = Oil.CIP(~ind);
+        SortC = sort(Oil.CIP,'descend');
+        SumC = nansum(Oil.CIP);
+        NormSortC = SortC/SumC;
+        CumCNorm = cumsum(NormSortC);
+        CumC = cumsum(SortC);
+        Perc5Location(27) = ceil(length(Oil.CIP)*0.05);
+
 %     % Parameters
-%         ContributionPerc5(24) = CumC(Perc5Location(24));
-%         ContributionPerc5Norm(24) = CumCNorm(Perc5Location(24));
-%         Minimum(24) = min(Oil.CIP);
-%         Maximum(24) = max(Oil.CIP);
-%         Average(24) = mean(Oil.CIP);
-%         MedC(24) = median(Oil.CIP);
-%         SumEmissions(24) = sum(Oil.CIP);
+        ContributionPerc5(27) = CumC(Perc5Location(27));
+        ContributionPerc5Norm(27) = CumCNorm(Perc5Location(27));
+        Minimum(27) = min(Oil.CIP);
+        Maximum(27) = max(Oil.CIP);
+        Average(27) = mean(Oil.CIP);
+        MedC(27) = median(Oil.CIP);
+        SumEmissions(27) = sum(Oil.CIP);
 
     %% PC (oil)
 
@@ -624,16 +630,16 @@ data= dataraw;
         NormSortC = SortC/SumC;
         CumCNorm = cumsum(NormSortC);
         CumC = cumsum(SortC);
-        Perc5Location(27) = ceil(length(Oil.PC)*0.05);
+        Perc5Location(28) = ceil(length(Oil.PC)*0.05);
 
     % Parameters
-        ContributionPerc5(27) = CumC(Perc5Location(27));
-        ContributionPerc5Norm(27) = CumCNorm(Perc5Location(27));
-        Minimum(27) = min(Oil.PC);
-        Maximum(27) = max(Oil.PC);
-        Average(27) = mean(Oil.PC);
-        MedC(27) = median(Oil.PC);
-        SumEmissions(27) = sum(Oil.PC);
+        ContributionPerc5(28) = CumC(Perc5Location(28));
+        ContributionPerc5Norm(28) = CumCNorm(Perc5Location(28));
+        Minimum(28) = min(Oil.PC);
+        Maximum(28) = max(Oil.PC);
+        Average(28) = mean(Oil.PC);
+        MedC(28) = median(Oil.PC);
+        SumEmissions(28) = sum(Oil.PC);
 
 
     %% Completions (oil)
@@ -717,25 +723,46 @@ data= dataraw;
         NormSortC = SortC/SumC;
         CumCNorm = cumsum(NormSortC);
         CumC = cumsum(SortC);
-        Perc5Location(32) = ceil(length(Oil.TV)*0.05);
+        Perc5Location(33) = ceil(length(Oil.TV)*0.05);
 
     % Parameters
-        ContributionPerc5(32) = CumC(Perc5Location(32));
-        ContributionPerc5Norm(32) = CumCNorm(Perc5Location(32));
-        Minimum(32) = min(Oil.TV);
-        Maximum(32) = max(Oil.TV);
-        Average(32) = mean(Oil.TV);
-        MedC(32) = median(Oil.TV);
-        SumEmissions(32) = sum(Oil.TV);
+        ContributionPerc5(33) = CumC(Perc5Location(33));
+        ContributionPerc5Norm(33) = CumCNorm(Perc5Location(33));
+        Minimum(33) = min(Oil.TV);
+        Maximum(33) = max(Oil.TV);
+        Average(33) = mean(Oil.TV);
+        MedC(33) = median(Oil.TV);
+        SumEmissions(33) = sum(Oil.TV);
 
+    %% Flare methane (oil)
 
+    % Data prep
+        Oil.FM = data(:,21);
+        Oil.FM(Oil.FM==0) = NaN;
+        ind = isnan(Oil.FM);
+        Oil.FM = Oil.FM(~ind);
+        SortC = sort(Oil.FM,'descend');
+        SumC = nansum(Oil.FM);
+        NormSortC = SortC/SumC;
+        CumCNorm = cumsum(NormSortC);
+        CumC = cumsum(SortC);
+        Perc5Location(34) = ceil(length(Oil.FM)*0.05);
+
+    % Parameters
+        ContributionPerc5(34) = CumC(Perc5Location(34));
+        ContributionPerc5Norm(34) = CumCNorm(Perc5Location(34));
+        Minimum(34) = min(Oil.FM);
+        Maximum(34) = max(Oil.FM);
+        Average(34) = mean(Oil.FM);
+        MedC(34) = median(Oil.FM);
+        SumEmissions(34) = sum(Oil.FM);
 
 % Convert our data from kg/day to Tg/year
-Study.Gas = SumEmissions(1:16) * 365/10^9;
+Study.Gas = SumEmissions(1:17) * 365/10^9;
 
 Superemitters = sum(ContributionPerc5) * 365/10^9;
 
-Study.Oil = SumEmissions(17:32) * 365/10^9;
+Study.Oil = SumEmissions(18:34) * 365/10^9;
 
 % REPLACE COMPLETIONS AND WORKOVERS
 Study.Gas(13) = Gas.completions;
@@ -755,30 +782,30 @@ if k == 1
         EF = [EF; zeros(addlength - length(EF),1)];
         EF = EF(randperm(length(EF)));
         
-        welldata.drygas = dataplot.drygas(:,[1 21]);
-        welldata.gaswoil = dataplot.gaswoil(:,[1 21]);
+        welldata.drygas = dataplot.drygas(:,[1 22]);
+        welldata.gaswoil = dataplot.gaswoil(:,[1 22]);
         
         welldata.drygas(:,2) = welldata.drygas(:,2) + EF(1:length(dataplot.drygas(:,1)));
         welldata.gaswoil(:,2) = welldata.gaswoil(:,2) + EF((length(dataplot.drygas(:,1))+1):end);
         
-        welldata.assoc = dataplot.assoc(:,[1 21]);
-        welldata.oil = dataplot.oil(:,[1 21]);
+        welldata.assoc = dataplot.assoc(:,[1 22]);
+        welldata.oil = dataplot.oil(:,[1 22]);
     end
 else
     Study.All = [Study.Gas', Study.Oil'];
     if welloption == 1
-        welldata.drygas(:,:,k) = dataplot.drygas(:,[1 21]);
-        welldata.gaswoil(:,:,k) = dataplot.gaswoil(:,[1 21]);
-        welldata.assoc(:,:,k) = dataplot.assoc(:,[1 21]);
-        welldata.oil(:,:,k) = dataplot.oil(:,[1 21]);
+        welldata.drygas(:,:,k) = dataplot.drygas(:,[1 22]);
+        welldata.gaswoil(:,:,k) = dataplot.gaswoil(:,[1 22]);
+        welldata.assoc(:,:,k) = dataplot.assoc(:,[1 22]);
+        welldata.oil(:,:,k) = dataplot.oil(:,[1 22]);
     end
 end
 
 if equipoption == 1
-    equipdata.drygas = [dataplot.drygas(:,6:20) dataplot.drygas(:,1) dataplot.drygas(:,4) dataplot.drygas(:,5)];
-    equipdata.gaswoil = [dataplot.gaswoil(:,6:20) dataplot.gaswoil(:,1) dataplot.gaswoil(:,4) dataplot.gaswoil(:,5)];
-    equipdata.assoc = [dataplot.assoc(:,6:20) dataplot.assoc(:,1) dataplot.assoc(:,4) dataplot.assoc(:,5)];
-    equipdata.oil = [dataplot.oil(:,6:20) dataplot.oil(:,1) dataplot.oil(:,4) dataplot.oil(:,5)];
+    equipdata.drygas = [dataplot.drygas(:,6:21) dataplot.drygas(:,1) dataplot.drygas(:,4) dataplot.drygas(:,5)];
+    equipdata.gaswoil = [dataplot.gaswoil(:,6:21) dataplot.gaswoil(:,1) dataplot.gaswoil(:,4) dataplot.gaswoil(:,5)];
+    equipdata.assoc = [dataplot.assoc(:,6:21) dataplot.assoc(:,1) dataplot.assoc(:,4) dataplot.assoc(:,5)];
+    equipdata.oil = [dataplot.oil(:,6:21) dataplot.oil(:,1) dataplot.oil(:,4) dataplot.oil(:,5)];
 end
 
 % Study.All = sum(Study.All,2);
