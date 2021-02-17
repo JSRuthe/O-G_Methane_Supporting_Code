@@ -5,7 +5,7 @@ This repository contains code and spreadsheets supporting the paper "Closing the
 
 The analysis platform for this study is the component-level methane emissions subroutine embedded within the life-cycle assessment simulator Oil Production and Greenhouse Gas Emissions Estimator (OPGEE 3.0, see repository for OPGEE 3.0 [here](https://github.com/arbrandt/OPGEE ) ). Note that OPGEE 3.0 is under continuous development.
 
-The methane emissions subroutine processes inputs from external databases – specifically equipment-level emissions distributions and well and production values and produces gross emissions estimates. The flowchart below summarizes the data processing workflow with reference to the specific folder locations in this repository. 
+The methane emissions subroutine processes inputs from external databases – specifically equipment-level emissions distributions and well and production values and produces gross emissions estimates. The flowchart below summarizes the data processing workflow with reference to the specific folder locations in this repository. Certain datasets used are propriety and not publicly available. These include the Enverus dataset, used to generate well count and production parameters, and the Wood Mackenzie dataset, used to generator gas-to-oil ratios for oil-only wells.
 
 Another key element of analysis in the paper referenced above is the summary of methane emissions in the EPA Greenhouse Gas Inventory. Spreadsheets supporting this analysis are located in the folder “1_GHGI_Analysis”.
 
