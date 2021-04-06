@@ -35,3 +35,15 @@ if i > 1
 else
     sitedatainit.assoc = sitedata.assoc;
 end
+
+% if i > 1
+%     [sizemat1,~] = size(sitedatainit.oil);
+%     [sizemat2,~] = size(sitedata.oil);
+%     if sizemat1 < sizemat2
+%         sitedata.oil = sitedata.oil(1:sizemat1,:);
+%     else
+%         sitedata.oil = vertcat(sitedata.oil, zeros((sizemat1 - sizemat2),6));
+%     end
+% else
+%     sitedatainit.oil = sitedata.oil;
+% end

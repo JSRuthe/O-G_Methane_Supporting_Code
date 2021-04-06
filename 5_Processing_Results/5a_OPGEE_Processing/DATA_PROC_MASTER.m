@@ -152,18 +152,18 @@ for k = 1:n.trial
         equipdata_tot.oil(:,:,k) = equipdata.oil;
         
         if k == n.trial
-           save('equipdata_Set16_25reals.mat','equipdata_tot', '-v7.3'); 
+           save('equipdata_Set20_25reals.mat','equipdata_tot', '-v7.3'); 
         end
         
     end
     
 end
 
-
-save('Emissionsdata_set16_1-100.mat','EmissionsGas','EmissionsOil','Superemitters');
-
-
-sitedata_All = sitedata_All(:,[2 4 6],:);
+x=1;
+% save('Emissionsdata_set16_1-100.mat','EmissionsGas','EmissionsOil','Superemitters');
+% 
+% 
+% sitedata_All = sitedata_All(:,[2 4 6],:);
 
 
     

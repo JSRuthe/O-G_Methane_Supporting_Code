@@ -245,5 +245,51 @@ sitedata.assoc = site_iteration;
 
 
 
-        
+% %% OIL ONLY
+% 
+%     well_iteration = welldata.oil;
+%     well_iteration = well_iteration(randperm(length(well_iteration)),:);
+%     newlength = round((1/size_adjust) * length(well_iteration));
+%     well_iteration = well_iteration(1:newlength,:);
+%     
+%     site_iteration = zeros(1,1);
+%     
+%     counter = 0;
+%     [totalrows,~] = size(well_iteration);
+%     startrow = 1;
+%     startrow = int64(startrow);
+%     endrow = 1;
+%     endrow = int64(endrow);
+%     reset = true;
+%     testcount = 1;
+%     
+%     while endrow < totalrows && startrow < totalrows
+%         counter = counter + 1;
+%         
+%         index = well_iteration(startrow,1);
+%         
+%         if index == 71
+%             tranche_set = tranche.i31;
+%             [startrow, endrow, site_iteration, reset, testcount] = clustering(startrow, endrow, site_iteration, reset, tranche_set, well_iteration, totalrows, testcount);
+%         end
+%         
+%         if index == 72
+%             tranche_set = tranche.i32;
+%             [startrow, endrow, site_iteration, reset, testcount] = clustering(startrow, endrow, site_iteration, reset, tranche_set, well_iteration, totalrows, testcount);
+%         end
+% 
+%         if index == 73
+%             tranche_set = tranche.i33;
+%             [startrow, endrow, site_iteration, reset, testcount] = clustering(startrow, endrow, site_iteration, reset, tranche_set, well_iteration, totalrows, testcount);
+%         end
+%         
+%         if index == 74
+%             tranche_set = tranche.i34;
+%             [startrow, endrow, site_iteration, reset, testcount] = clustering(startrow, endrow, site_iteration, reset, tranche_set, well_iteration, totalrows, testcount);
+%         end
+% 
+%     end
+% 
+%  
+% sitedata.oil = site_iteration;        
 

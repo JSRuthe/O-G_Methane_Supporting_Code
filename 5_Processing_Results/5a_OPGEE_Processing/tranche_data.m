@@ -106,19 +106,19 @@ logind = zeros(size_mat,7);
         tranche.i20 = M.gaswoil(ind.i20,:);
 
     %   Oil only
-%         ind.oil = logind(:,2);
-%         ind.oil = int16(ind.oil);
-%         M.oil = M.raw(ind.oil == 1,:);    
-%         
-%         ind.i31 = M.oil(:,5) < 1;
-%         ind.i32 = M.oil(:,5) > 1 & M.oil(:,5) < 5;
-%         ind.i33 = M.oil(:,5) > 5 & M.oil(:,5) < 10;
-%         ind.i34 = M.oil(:,5) > 10 & M.oil(:,5) < 20;
-% 
-%         tranche.i31 = M.oil(ind.i31,:);
-%         tranche.i32 = M.oil(ind.i32,:);
-%         tranche.i33 = M.oil(ind.i33,:);
-%         tranche.i34 = M.oil(ind.i34,:);
+        ind.oil = logind(:,2);
+        ind.oil = int16(ind.oil);
+        M.oil = M.raw(ind.oil == 1,:);    
+        
+        ind.i31 = M.oil(:,5) < 0.5;
+        ind.i32 = M.oil(:,5) > 0.5 & M.oil(:,5) < 1;
+        ind.i33 = M.oil(:,5) > 1 & M.oil(:,5) < 10;
+        ind.i34 = M.oil(:,5) > 10;
+
+        tranche.i31 = M.oil(ind.i31,:);
+        tranche.i32 = M.oil(ind.i32,:);
+        tranche.i33 = M.oil(ind.i33,:);
+        tranche.i34 = M.oil(ind.i34,:);
         
     %   Oil with gas
         ind.oilwgas = logind(:,4);

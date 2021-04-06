@@ -42,7 +42,7 @@ Oil.completions = Oil.completions *(1/1000); %Tg/year
 
 %% Combustion emissions output from combustion.v1
 
-Gas.Combustion = 0.0285; % Tg/year
+Gas.Combustion = 0.0983; % Tg/year
 
 %% EXTEND MATRIX
 
@@ -411,7 +411,26 @@ Gas.Combustion = 0.0285; % Tg/year
 
     %% Flare methane (gas)
 
-    % N/A
+    % Data prep
+        Gas.FM = data(:,21);
+        Gas.FM(Gas.FM==0) = NaN;
+        ind = isnan(Gas.FM);
+        Gas.FM = Gas.FM(~ind);
+        SortC = sort(Gas.FM,'descend');
+        SumC = nansum(Gas.FM);
+        NormSortC = SortC/SumC;
+        CumCNorm = cumsum(NormSortC);
+        CumC = cumsum(SortC);
+        Perc5Location(17) = ceil(length(Gas.FM)*0.05);
+
+    % Parameters
+        ContributionPerc5(17) = CumC(Perc5Location(17));
+        ContributionPerc5Norm(17) = CumCNorm(Perc5Location(17));
+        Minimum(17) = min(Gas.FM);
+        Maximum(17) = max(Gas.FM);
+        Average(17) = mean(Gas.FM);
+        MedC(17) = median(Gas.FM);
+        SumEmissions(17) = sum(Gas.FM);
     
         
 %% Save Equipment for plotting
@@ -773,7 +792,7 @@ Study.Oil(13) = Oil.completions;
 Study.Oil(14) = Oil.workovers;
 
 % Combustion emissions are added to the site-level vectors
-load('EF_Comp');
+load('EF_Comp_v2');
 
 if k == 1
     Study.All = [Study.Gas', Study.Oil'];
