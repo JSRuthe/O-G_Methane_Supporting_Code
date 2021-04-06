@@ -29,7 +29,7 @@ c = 10.^linspace(log10(start),log10(stop),N+1);
 
 if all_equip == 1
 
-	All_Plotting(gasvec, oilvec, s, n)
+	s = All_Plotting(gasvec, oilvec, s, n, k);
 
 end
 
@@ -55,7 +55,7 @@ if EF_assess == 1
         gasvecmarg = gasvectot(loc,:);
         gasvechi = gasvectot(~loc,:);
 
-        AF = [1;0;0.13;0.71;0.84;0.41;0.41;0.08;0.03;0.20; 1.87; 0.175; 0; 0; 0.41; 1];
+        AF = [1;0;0.1321;0.7102;0.8399;0.40570;0.40570;0.0814;0.02987;0.2023; 1.8743; 0.175; 0; 0; 0.40570; 0.0320];
 
         for jj = 1:16
             vec_marg = gasvecmarg(:,jj);
@@ -97,7 +97,7 @@ if EF_assess == 1
         oilvecmarg = oilvectot(loc,:);
         oilvechi = oilvectot(~loc,:);
 
-        AF = [1;0.22;0.19;0.37;0;0.82;0.82;0;0;0.09;1.11; 0; 0; 0;0.82; 1];
+        AF = [1;0.2234;0.1859;0.3689;0;0.815404;0.815404;0;0;0.08612;1.1051; 0; 0; 0;0.815404; 0.06052];
 
         for jj = 1:16
             vec_marg = oilvecmarg(:,jj);
@@ -138,7 +138,7 @@ if EF_assess == 1
         % Final table
         Tab_Exp = [multiplier(:,4) ave_em(:,[1,2,3]) lo_em(:,1) hi_em(:,1) multiplier(:,8) ave_em(:,[4,5,6]) lo_em(:,2) hi_em(:,2)];
         %Export = [ave_em(:,3), ave_em(:,6)];
-        csvwrite('EFS_ave_set16_v2.csv', Tab_Exp)
+        csvwrite('EFS_ave_set20_test.csv', Tab_Exp)
         x = 1;
     end
 end

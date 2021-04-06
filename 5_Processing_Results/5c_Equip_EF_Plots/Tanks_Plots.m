@@ -15,10 +15,10 @@ BrightRed = [177/255, 4/255, 14/255];
 
     % Load data - this study
 
-    study.oil_tanks = 468842;
+    study.oil_tanks = 466215;
     study.oil_int_EF = Tab_Exp(15,10);
     study.oil_unint_EF = Tab_Exp(7,10);
-    study.gas_tanks = 177706;
+    study.gas_tanks = 175843;
     study.gas_int_EF = Tab_Exp(15,4);
     study.gas_unint_EF = Tab_Exp(7,4);
     
@@ -153,8 +153,8 @@ N_TANK_sm.Oil = N_TANK(~ind,1);
 N_WELL_sm.Oil = N_WELL(~ind,1);
 N_TANK_sm.Oil = Tank_Mat_Extend_v2(N_TANK_sm.Oil, N_WELL_sm.Oil, x_divide);
 
-zero_tanks_count.Gas = 307737 - length(N_TANK_lg.Gas) - length(N_TANK_sm.Gas);
-zero_tanks_count.Oil = 219433 - length(N_TANK_lg.Oil) - length(N_TANK_sm.Oil);
+zero_tanks_count.Gas = 306553 - length(N_TANK_lg.Gas) - length(N_TANK_sm.Gas);
+zero_tanks_count.Oil = 216527 - length(N_TANK_lg.Oil) - length(N_TANK_sm.Oil);
 
 zero_tanks.Gas = zeros(zero_tanks_count.Gas,1);
 zero_tanks.Oil = zeros(zero_tanks_count.Oil,1);
@@ -173,8 +173,7 @@ N_TANK_all.Oil = vertcat(N_TANK_lg.Oil, N_TANK_sm.Oil, zero_tanks.Oil);
 %(ii) Determine bin means
     bin_ave_gas = accumarray(ind_gas, N_TANK_all.Gas,[],@mean);
     bin_ave_oil = accumarray(ind_oil, N_TANK_all.Oil,[],@mean);
-    
-    x = 1;
+
     
 %% PLOTTING
 
@@ -183,8 +182,8 @@ figure(1)
 % Tank counts in the GHGRP are extrapolated as described in the spreadsheet
 % "GHGRP Tanks Analysis"
 
-N_TANK_all.Oil = sum(N_TANK_all.Oil)/0.384;
-N_TANK_all.Gas = sum(N_TANK_all.Gas)/0.710;
+N_TANK_all.Oil = sum(N_TANK_all.Oil)*2.77341;
+N_TANK_all.Gas = sum(N_TANK_all.Gas)*1.36907;
 
 
 ha = tight_subplot(1,4,0.08,[.2 .03],[.1 .02]);
@@ -209,7 +208,7 @@ b4.FaceColor = 'k';
 % c = num2str(N_TANK_all.Oil,'%3.0f');
 % text(1.25, double(N_TANK_all.Oil)+dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
 
-        ylim([0 500000]);
+        ylim([0 600000]);
         xlim([0 2]);
         x = {'Tank count'};
         set(gca,'XTick',1,'XTickLabel',x,'XTickLabelRotation',25);
@@ -277,7 +276,7 @@ axes(ha(2));
 %         dy = 10;
 %         label = num2str(Meen,'%3.2f'); c = cellstr(label);
 %         text(1.25, double(Meen)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
-%        
+       
 % Flash Control rate
 
      plot_color = StanfordRed;   
@@ -309,7 +308,7 @@ axes(ha(2));
         %     h=gca; h.XAxis.TickLength = [0 0];
         xlim([0.5 2.5]);
 
-        ylim([0.0005 2000]);
+        ylim([0.0005 5000]);
         set(gca,'FontSize',10)
         set(gca,'FontName','Arial')
         
@@ -370,7 +369,7 @@ axes(ha(3));
 %         dy = 20;
 %         label = num2str(Meen,'%3.2f'); c = cellstr(label);
 %         text(1.25, double(Meen)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
-%         
+        
  % Fraction loss rate
 
      plot_color = StanfordRed;   
@@ -402,7 +401,7 @@ axes(ha(3));
         %     h=gca; h.XAxis.TickLength = [0 0];
         xlim([0.5 2.5]);
 
-        ylim([0.0005 2000]);
+        ylim([0.0005 5000]);
         set(gca,'FontSize',10)
         set(gca,'FontName','Arial')
         
@@ -449,7 +448,7 @@ Total_Emissions_EPA.vent = Total_Emissions_EPA.vent * (365/1000000);
 
 b3 = bar(1.75, Total_Emissions_study.vent,'BarWidth',0.1);
 b3.FaceColor = StanfordRed;
-% 
+
 % dy = 1.5;
 % label = num2str(Total_Emissions_study.vent,'%3.1f');  c = cellstr(label);
 % text(1.75, double(Total_Emissions_study.vent)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
@@ -464,11 +463,11 @@ b4.FaceColor = 'k';
 % text(2.25, double(Total_Emissions_EPA.vent)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
 
         xlim([0 3]);
-        x = {'Flash emissions', 'Vent emissions'};
+        x = {'Intentional', 'Unintentional'};
         set(gca,'XTick',1:2,'XTickLabel',x,'XTickLabelRotation',25);
 
         set(gca,'yscale','log')
-        ylim([0.0005 2000]);
+        ylim([0.0005 5000]);
         set(gca,'FontSize',10)
         set(gca,'FontName','Arial')
         
@@ -613,7 +612,7 @@ axes(ha(2));
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
         ln.MarkerSize = 6;
-       
+%        
 %         dy = 2;
 %         label = num2str(1-control_rate_flash.gas,'%3.2f'); c = num2str(1-control_rate_flash.gas);
 %         text(1.75, double(1-control_rate_flash.gas)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
@@ -706,7 +705,7 @@ axes(ha(3));
         ln = plot(1.75,Meen,'s');
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
-       
+%        
 %         dy = 2;
 %         c = num2str(Meen,'%3.2f');
 %         text(1.75, double(Meen)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
@@ -804,9 +803,9 @@ b4.FaceColor = 'k';
         set(gca,'YMinorTick','on')
         set(gca, 'TickDir', 'out')  
 
-      set(figure(3),'PaperUnits','inches','PaperPosition',[0 0 8 2.75])
-      figure('Renderer', 'Painters')
-      saveas(figure(3),'tanks_gas_nolbl.emf','meta');
+%       set(figure(3),'PaperUnits','inches','PaperPosition',[0 0 8 2.75])
+%       figure('Renderer', 'Painters')
+%       saveas(figure(3),'tanks_gas_nolbl.emf','meta');
     
 %% EPA Compare
 
@@ -969,8 +968,8 @@ set(t(4),'YLim',[0 0.1])
             %set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 2.75])
             %print('-djpeg','-r600','Fig_Tanks_v6_nlbl.jpg');
             
-            %set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 3.50])
-            %print('-djpeg','-r600','Fig_Tanks_v6_labld.jpg');
+            set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 3.50])
+            print('-djpeg','-r600','Fig_Tanks_v6_labld.jpg');
             
 %% PREPARING EQUIP VECS FOR DECOMPOSITIONS
             
@@ -1004,3 +1003,4 @@ set(t(4),'YLim',[0 0.1])
             
         
         x = 1;
+        save('Equipvecs_Set20.mat','study_well','study_sep','study_meter');

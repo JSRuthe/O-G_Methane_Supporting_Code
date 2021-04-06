@@ -1,4 +1,4 @@
-function All_Plotting(gasvec, oilvec, s, n)
+function s = All_Plotting(gasvec, oilvec, s, n, k)
 
 % Define colors to use in plots
 StanfordRed = [140/255,21/255,21/255]; %Stanford red
@@ -83,10 +83,10 @@ end
 
  % Separators
 
-	histogram(gasvec(:,2),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(2));
+	histogram(gasvec(:,4),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(2));
 	set(s(2),'YLim',[0 0.08])
 
-	histogram(oilvec(:,2),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordRed, 'Parent', s(2));
+	histogram(oilvec(:,4),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordRed, 'Parent', s(2));
 	set(s(2),'YLim',[0 0.08])
 
 %     set(s(2),'YTickLabel',[]);
@@ -116,8 +116,8 @@ end
 
 % Dehydrator
 
-	histogram(gasvec(:,3),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(3));
-	set(s(3),'YLim',[0 0.12])
+	histogram(gasvec(:,9),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(3));
+	set(s(3),'YLim',[0 0.01])
 
 	% No dehydrators in oil system
 %      histogram(oilvec(:,3),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1,'EdgeColor',StanfordRed, 'Parent', s(3));
@@ -145,12 +145,12 @@ end
 		axes(axis_a)
 		% link axes in case of zooming
 		linkaxes([axis_a axis_b])
-		set(s(3),'YLim',[0 0.12])
+		set(s(3),'YLim',[0 0.01])
 	end
 
 % % Meter
 
-	histogram(gasvec(:,4),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(4));
+	histogram(gasvec(:,5),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(4));
 	set(s(4),'YLim',[0 0.06])
 
 	% No meters in oil system
@@ -184,8 +184,8 @@ end
 
 % % Reciprocating Compressor
 
-	histogram(gasvec(:,5),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(5));
-	set(s(5),'YLim',[0 0.15])
+	histogram(gasvec(:,8),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(5));
+	set(s(5),'YLim',[0 0.02])
 
 	% No recips in oil system
 %      histogram(oilvec(:,1),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1,'EdgeColor',StanfordRed, 'Parent', s(1));
@@ -213,16 +213,16 @@ end
 		axes(axis_a)
 		% link axes in case of zooming
 		linkaxes([axis_a axis_b])
-		set(s(6),'YLim',[0 0.15])
+		set(s(6),'YLim',[0 0.02])
 	end
 
 % % Heater
 
-	histogram(gasvec(:,6),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(6));
-	set(s(6),'YLim',[0 0.15])
+	histogram(gasvec(:,3),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(6));
+	set(s(6),'YLim',[0 0.03])
 
-	 histogram(oilvec(:,6),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordRed, 'Parent', s(6));
-	set(s(6),'YLim',[0 0.15])
+	 histogram(oilvec(:,3),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordRed, 'Parent', s(6));
+	set(s(6),'YLim',[0 0.03])
 
 %     set(s(6),'YTickLabel',[]);
 	if k == n.trial
@@ -246,7 +246,7 @@ end
 		axes(axis_a)
 		% link axes in case of zooming
 		linkaxes([axis_a axis_b])
-		set(s(6),'YLim',[0 0.15])
+		set(s(6),'YLim',[0 0.03])
 	end
  % % Header
 
@@ -254,8 +254,8 @@ end
 %     histogram(gasvec(:,1),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1,'EdgeColor',StanfordLGreen, 'Parent', s(1));
 %     set(s(1),'YLim',[0 0.05]])
 
-	 histogram(oilvec(:,7),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordRed, 'Parent', s(7));
-	set(s(7),'YLim',[0 0.2])
+	 histogram(oilvec(:,2),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordRed, 'Parent', s(7));
+	set(s(7),'YLim',[0 0.05])
 
 %     set(s(7),'YTickLabel',[]);
 	if k == n.trial
@@ -279,7 +279,7 @@ end
 		axes(axis_a)
 		% link axes in case of zooming
 		linkaxes([axis_a axis_b])
-		set(s(7),'YLim',[0 0.2])
+		set(s(7),'YLim',[0 0.05])
 	end
 
 %  % % Chemical injection pumps
@@ -317,10 +317,10 @@ end
 
  % % Pneumatic controllers
 
-	histogram(gasvec(:,9),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(8));
+	histogram(gasvec(:,11),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(8));
 	set(s(8),'YLim',[0 0.1]);
 
-	 histogram(oilvec(:,9),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordRed, 'Parent', s(8));
+	 histogram(oilvec(:,11),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordRed, 'Parent', s(8));
 	set(s(8),'YLim',[0 0.1]);
 
 %     set(s(9),'YTickLabel',[]);
@@ -351,10 +351,10 @@ end
 
  % % Tank leaks
 
-	histogram(gasvec(:,10),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(9));
+	histogram(gasvec(:,6),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(9));
 	set(s(9),'YLim',[0 0.1])
 
-	 histogram(oilvec(:,10),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordRed, 'Parent', s(9));
+	 histogram(oilvec(:,6),b,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordRed, 'Parent', s(9));
 	set(s(9),'YLim',[0 0.1])
 
 %     set(s(10),'YTickLabel',[]);
@@ -383,10 +383,10 @@ end
 	end
 	% % Tank vents
 
-	histogram(gasvec(:,11),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(10));
+	histogram(gasvec(:,7),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordLGreen, 'Parent', s(10));
 	set(s(10),'YLim',[0 0.08])
 
-	 histogram(oilvec(:,11),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordRed, 'Parent', s(10));
+	 histogram(oilvec(:,7),c,'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',1.5,'EdgeColor',StanfordRed, 'Parent', s(10));
 	set(s(10),'YLim',[0 0.08])
 
 %     set(s(11),'YTickLabel',[]);
