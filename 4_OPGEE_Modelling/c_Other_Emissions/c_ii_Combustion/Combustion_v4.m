@@ -5,12 +5,13 @@ clear; clc;
 data = importdata('ERG2011_Engines.csv');
 horsepower = data(:,1);
 
+% Average horsepower is 256 HP
+
 % Total number of compressors is based off of EPA
 %   Total gas wells = 433430
-%   Compressors/well = 0.81
-%   Compressors allocated to production sites = 0.29
+%   Compressors/well = 0.08144
 
-n_comp = 101813;
+n_comp = 35298;
 
 % EP distribution
 % Average is based upon Zavala Araiza 2017 (25% higher than NSPS spec).
@@ -26,6 +27,10 @@ for i = 1:n_comp
     HP = horsepower(RandomIndex);
     EF(i) = EP * HP * 24; % kg/day
 end
+
+save('EF_Comp_v2.mat','EF');
+
+Total = sum(EF)*365/10^9
 
 figure(1)
 
@@ -58,5 +63,4 @@ set(gca,'YLim',[0 0.4])
 set(gca,'XLim',[0.01 10000])
 xlabel('Emissions [kg CH_{4}/d]');
 
-
-Total = sum(EF)*365/10^9
+mean(EF)
