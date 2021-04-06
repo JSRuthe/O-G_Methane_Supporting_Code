@@ -1,7 +1,7 @@
 # O-G_Methane_Supporting_Code
 
 ## Overview and contents ##
-This repository contains code and spreadsheets supporting the paper "Closing the gap: Explaining persistent underestimation of US oil and natural gas production methane inventories" (not yet published). 
+This repository contains code and spreadsheets supporting the paper "Closing the gap: Explaining persistent underestimation of US oil and natural gas production methane inventories". 
 
 The analysis platform for this study is the component-level methane emissions subroutine embedded within the life-cycle assessment simulator Oil Production and Greenhouse Gas Emissions Estimator (OPGEE 3.0, see repository for OPGEE 3.0 [here](https://github.com/arbrandt/OPGEE ) ). Note that OPGEE 3.0 is under continuous development.
 
@@ -17,16 +17,16 @@ OPGEE 3.0 and the methane emissions database are developed in a Microsoft Excel 
 The data and visuals processing scripts are written in the Matlab programming language.
 
 ## Running the model ##
-Basic functions of the methane emissions subroutine in OPGEE can be run independently of the preceding “Methane database” and “Equipment-level EF generator” scripts. Description of the methane database and development of the equipment-level emission factor distributions can be found in Section 4.2 and 4.3, respectively, in the Supplementary Information.
+Basic functions of the methane emissions subroutine in OPGEE can be run independently of the preceding “Methane database” and “Equipment-level EF generator” scripts. Description of the methane database and development of the equipment-level emission factor distributions can be found in Supplementary Methods 4 in the Supplementary Information.
 For a single uncertainty realization:
 1)	The OPGEE 3.0 Excel file is located in the folder: “\4_OPGEE_Modelling\b_OPGEE_runs”.
 2)	Prior to opening OPGEE, make sure “Calculation options” are set to “Manual” (File -> Options -> Formulas -> Calculation Options).
 3)	Open OPGEE 3.0
 4)	Navigate to the “Inputs tab”. Settings (top rows) should already be preset to those used for the study (Uncert. Runs: 1, Functional unit: Gas, Oil boundary: Field, Gas boundary: Distribution, Co-production: Allocation, Fugitives model: Component).
-5)	Set fields: 200-273. OPGEE generates outputs (carbon intensity or methane leakage rate) on a “field” basis, where a “field” represents an O&NG system with unique properties. In our case, “fields” are the productivity tranches/bins (described in Section 5.1 of the Supplementary Information).
-6)	Click “Run Assessment”. A full assessment of all 74 tranches (corresponding to all US wells) takes approximately 3.5 hours on a standard desktop computer, but possibly longer on a laptop computer.
+5)	Set fields: 200-273. OPGEE generates outputs (carbon intensity or methane leakage rate) on a “field” basis, where a “field” represents an O&NG system with unique properties. In our case, “fields” are the productivity tranches/bins (described in Supplementary Methods 5).
+6)	Click “Run Assessment”. A full assessment of all 74 tranches (corresponding to all US wells) takes approximately 2.5 hours on a standard desktop computer, but possibly longer on a laptop computer.
 
-Results of the methane emissions subroutine can be viewed on the “VF method – component” tab (see description of how to navigate this tab in Section 4.1 of the Supplementary Information). Total emissions should be within the uncertainty bounds presented in the main manuscript.
+Results of the methane emissions subroutine can be viewed on the “VF method – component” tab (see description of how to navigate this tab in Supplementary Methods 4). Total emissions should be within the uncertainty bounds presented in the main manuscript.
 The OPGEE file located in “2_OPGEE_Modelling” has already been seeded with a single uncertainty realization of equipment-level emission factor distributions. However, results presented in the main text of the paper were generated with 100 Monte Carlo uncertainty realizations (where one uncertainty realization corresponds to a separate equipment-level emission factor distribution file). 
 
 For a full uncertainty assessment:
