@@ -33,13 +33,13 @@ n.trial = 100; % number of matrices to generate
 
 %% PREPROCESSING
 
-data=importdata('Counts_Lower_Oil - Rev.csv');
+data=importdata('Counts_Lower_Oil.csv');
 CQ.LLoil = data;
-data=importdata('Counts_Upper_Oil - Rev.csv');
+data=importdata('Counts_Upper_Oil.csv');
 CQ.ULoil = data;
-data=importdata('Counts_Lower_Gas - Rev.csv');
+data=importdata('Counts_Lower_Gas.csv');
 CQ.LLgas = data;
-data=importdata('Counts_Upper_Gas - Rev.csv');
+data=importdata('Counts_Upper_Gas.csv');
 CQ.ULgas = data;
 
 data=importdata('FractionLeaking.csv');
@@ -127,14 +127,14 @@ size_ppmv = 2;
     EF_10k_ave2 = mean(EF_10k,3);
     EF_10k_ave1 = mean(EF_10k_ave2,2);
 
-% for k = 1:(n.trial)
-%     % Superpose halves of distributions < 10k and > 10k
-%     EF(:,:,k) = EF_500(:,:,k) + EF_10k(:,:,k);
-% 
-% 	% Create a text file name, and read the file.
-% 	csvFileName = ['EquipGas' num2str(k) '.csv'];
-% 	csvwrite(csvFileName,EF(:,:,k));
-% end
+for k = 1:(n.trial)
+    % Superpose halves of distributions < 10k and > 10k
+    EF(:,:,k) = EF_500(:,:,k) + EF_10k(:,:,k);
+
+	% Create a text file name, and read the file.
+	csvFileName = ['EquipGas' num2str(k) '.csv'];
+	csvwrite(csvFileName,EF(:,:,k));
+end
 
 %% Loop oil
 
@@ -212,11 +212,11 @@ size_ppmv = 2;
     EF_10k_ave2 = mean(EF_10k,3);
     EF_10k_ave1 = mean(EF_10k_ave2,2);
     x = 1;
-% for k = 1:(n.trial)
-%     % Superpose halves of distributions < 10k and > 10k
-%     EF(:,:,k) = EF_500(:,:,k) + EF_10k(:,:,k);
-% 
-% 	% Create a text file name, and read the file.
-% 	csvFileName = ['EquipOil' num2str(k) '.csv'];
-% 	csvwrite(csvFileName,EF(:,:,k));
-% end
+for k = 1:(n.trial)
+    % Superpose halves of distributions < 10k and > 10k
+    EF(:,:,k) = EF_500(:,:,k) + EF_10k(:,:,k);
+
+	% Create a text file name, and read the file.
+	csvFileName = ['EquipOil' num2str(k) '.csv'];
+	csvwrite(csvFileName,EF(:,:,k));
+end
