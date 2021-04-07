@@ -1,5 +1,7 @@
 # O-G_Methane_Supporting_Code
 
+[![DOI](https://zenodo.org/badge/286856642.svg)](https://zenodo.org/badge/latestdoi/286856642)
+
 ## Overview and contents ##
 This repository contains code and spreadsheets supporting the paper "Closing the gap: Explaining persistent underestimation of US oil and natural gas production methane inventories". 
 
