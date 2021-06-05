@@ -49,7 +49,17 @@ Gas.Combustion = 0.0983; % Tg/year
     for i = 200:259
         matpart = data(data(:,2) == i, :);
         [m,n] = size(matpart);
+        
+        % The length of the matrix is transformed to the count of actual
+        % wells
+        % matpart(1,3) = sample = (actual wells) / (sampled wells)
+        % (actual wells) = sample * (sampled wells)
+        
         len = ceil(matpart(1,3)*m);
+        
+        % Extend the matrix to the count of actual wells using Matlab's
+        % "repmat" function (duplicates copies of the matrix proportional
+        % to (actual wells/sampled wells)
         matpartextend = repmat(matpart,ceil(len/m),1);
         matpartextend = matpartextend(1:len,:);
         if i > 200
@@ -59,6 +69,10 @@ Gas.Combustion = 0.0983; % Tg/year
         end
     end
 
+    % The emissions matrix is broken out as follows:
+    % drygas : Gas wells with no oil production
+    % gaswoil : Gas wells with oil production and GOR > 100 Mscf/bbl
+    
     data = matpartextend_full;
     dataplot.gas = matpartextend_full;
     dataplot.gas(:,22) = sum(dataplot.gas(:,6:21),2);
@@ -453,7 +467,18 @@ data= dataraw;
     for i = 260:273
         matpart = data(data(:,2) == i, :);
         [m,n] = size(matpart);
+                
+        % The length of the matrix is transformed to the count of actual
+        % wells
+        % matpart(1,3) = sample = (actual wells) / (sampled wells)
+        % (actual wells) = sample * (sampled wells)
+        
         len = ceil(matpart(1,3)*m);
+                
+        % Extend the matrix to the count of actual wells using Matlab's
+        % "repmat" function (duplicates copies of the matrix proportional
+        % to (actual wells/sampled wells)
+        
         matpartextend = repmat(matpart,ceil(len/m),1);
         matpartextend = matpartextend(1:len,:);
         if i > 260
@@ -465,6 +490,10 @@ data= dataraw;
 
     data = matpartextend_full;
 
+    % The emissions matrix is broken out as follows:
+    % oil : Oil wells with no gas production
+    % gaswoil : Oil wells with gas production and GOR < 100 Mscf/bbl
+    
     dataplot.assoc = data(data(:,2) < 270 & data(:,2) > 259,:);
     dataplot.assoc(:,22) = sum(dataplot.assoc(:,6:21),2);
     dataplot.assoc(:,23) = dataplot.assoc(:,22)./dataplot.assoc(:,4);
