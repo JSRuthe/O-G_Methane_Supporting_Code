@@ -31,7 +31,7 @@ clear; clc;
 
 %% SETTING
 
-z = 3;  % 1 = wellhead, 2 = separator, 3 = meter
+z = 1;  % 1 = wellhead, 2 = separator, 3 = meter
 
 % EPA order:
 %   (1) West
@@ -105,9 +105,9 @@ for i = 1:4
     Leakage_Plotting(StudyHi,EPA_Comp,i, z)
 
       set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 3.25])
-      print('-djpeg','-r300',sprintf('MET_SI_Set20_lbl_%d.jpg',i));
+%       print('-djpeg','-r300',sprintf('MET_SI_Set20_lbl_%d.jpg',i));
 %       print('-dtiff','-r600',sprintf('MET_SI_Set20_lbl_%d.tif',i));
       %print('-dpdf','-r600',sprintf('WELL_SI_Set16_nolbl_%d.pdf',i));
-%       set(gcf,'Renderer', 'Painters')
-%       saveas(gcf,sprintf('WELL_SI_Set20_lbl_%d.emf',i),'meta');
+      set(gcf,'Renderer', 'Painters')
+      saveas(gcf,sprintf('WELL_SI_Set20_nolbl_%d.emf',i),'meta');
 end

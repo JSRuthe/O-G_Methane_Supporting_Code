@@ -46,8 +46,8 @@ function Leakage_Plotting(StudyHi,EPA_Comp,i, z)
 	% Study equipment data
 
     
-        load 'Equipvecs_Set20';
-        EF_Ave = importdata('EFS_ave_set20.csv');
+        load 'Equipvecs_Set21';
+        EF_Ave = importdata('EFS_ave_set21.csv');
         
         if z == 1
             x = {'Oil wells'};
@@ -105,19 +105,19 @@ axes(ha(1));
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
            
-        dy = 1.5;
-        label = num2str(Meen,'%3.2f'); c = cellstr(label);
-        text(j, double(Meen)*dy, c,'Color',plot_color,'FontSize', 6, 'HorizontalAlignment', 'center');
-        
+%         dy = 1.5;
+%         label = num2str(Meen,'%3.2f'); c = cellstr(label);
+%         text(j, double(Meen)*dy, c,'Color',plot_color,'FontSize', 6, 'HorizontalAlignment', 'center');
+%         
         ln = plot(j + 0.25,leaker,'^');
         ln.MarkerEdgeColor = 'k';
         ln.MarkerFaceColor = 'k';
         ln.MarkerSize = 6;
        
-        dy = 1.5;
-        label = num2str(leaker,'%3.2f'); c = cellstr(label);
-        text(j + 0.5, double(leaker)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
-            
+%         dy = 1.5;
+%         label = num2str(leaker,'%3.2f'); c = cellstr(label);
+%         text(j + 0.5, double(leaker)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
+%             
     end
    
 
@@ -167,19 +167,19 @@ axes(ha(2));
         ln.MarkerFaceColor = plot_color;
         ln.MarkerSize = 6;
            
-        dy = 1.25;
-        label = num2str(Med,'%2.1f'); c = cellstr(label);
-        text(j, double(Med)*dy, c,'Color',plot_color,'FontSize', 6, 'HorizontalAlignment', 'center');
+%         dy = 1.25;
+%         label = num2str(Med,'%2.1f'); c = cellstr(label);
+%         text(j, double(Med)*dy, c,'Color',plot_color,'FontSize', 6, 'HorizontalAlignment', 'center');
 
         ln = plot(j + 0.25,FL_EPA,'^');
         ln.MarkerEdgeColor = 'k';
         ln.MarkerFaceColor = 'k';
         ln.MarkerSize = 6;
         
-        dy = 1.25;
-        label = num2str(FL_EPA,'%2.1f'); c = cellstr(label);
-        text(j + 0.5, double(FL_EPA)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
-        
+%         dy = 1.25;
+%         label = num2str(FL_EPA,'%2.1f'); c = cellstr(label);
+%         text(j + 0.5, double(FL_EPA)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
+%         
     end
     
      set(gca,'yscale','log')
@@ -233,18 +233,18 @@ axes(ha(3));
         ln.MarkerFaceColor = plot_color;
         ln.MarkerSize = 6;
            
-        dy = 1.25;
-        label = num2str(Med,'%3.0f'); c = cellstr(label);
-        text(j - 0.05, double(Med)*dy, c,'Color',plot_color,'FontSize', 6, 'HorizontalAlignment', 'center');
+%         dy = 1.25;
+%         label = num2str(Med,'%3.0f'); c = cellstr(label);
+%         text(j - 0.05, double(Med)*dy, c,'Color',plot_color,'FontSize', 6, 'HorizontalAlignment', 'center');
 
         ln = plot(j + 0.25,CQ_EPA,'^');
         ln.MarkerEdgeColor = 'k';
         ln.MarkerFaceColor = 'k';
         ln.MarkerSize = 6;
         
-        dy = 1.25;
-        label = num2str(CQ_EPA,'%3.0f'); c = cellstr(label);
-        text(j + 0.45, double(CQ_EPA)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
+%         dy = 1.25;
+%         label = num2str(CQ_EPA,'%3.0f'); c = cellstr(label);
+%         text(j + 0.45, double(CQ_EPA)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
 
     end
     
@@ -327,19 +327,19 @@ axes(ha(4));
     ln.MarkerEdgeColor = StanfordRed;
     ln.MarkerFaceColor = StanfordRed;
     
-    dy = 1.75;
-    label = num2str(Average_EF,'%3.2f'); c = cellstr(label);
-    text(1 - 0.15, double(Meen)*dy, c,'Color',plot_color,'FontSize', 6, 'HorizontalAlignment', 'center');
-    
+%     dy = 1.75;
+%     label = num2str(Average_EF,'%3.2f'); c = cellstr(label);
+%     text(1 - 0.15, double(Meen)*dy, c,'Color',plot_color,'FontSize', 6, 'HorizontalAlignment', 'center');
+%     
     ln = plot(1 + 0.25,EF_EPA,'^');
     ln.MarkerEdgeColor = 'k';
     ln.MarkerFaceColor = 'k';
     ln.MarkerSize = 6;    
     
-    dy = 1.75;
-    label = num2str(EF_EPA,'%3.2f'); c = cellstr(label);
-    text(1 + 0.35, double(EF_EPA)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
-    
+%     dy = 1.75;
+%     label = num2str(EF_EPA,'%3.2f'); c = cellstr(label);
+%     text(1 + 0.35, double(EF_EPA)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
+%     
      set(gca,'yscale','log')
         
     ylim([0.0005 500]);
