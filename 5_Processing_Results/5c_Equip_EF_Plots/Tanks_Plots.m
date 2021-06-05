@@ -195,18 +195,18 @@ axes(ha(1));
 b3 = bar(0.75, study.oil_tanks,'BarWidth',0.1);
 b3.FaceColor = StanfordRed;
 
-% dy = 20000;
-% c = num2str(study.oil_tanks);
-% text(0.75, double(study.oil_tanks)+dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
+dy = 20000;
+c = num2str(study.oil_tanks);
+text(0.75, double(study.oil_tanks)+dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
 
 hold on
 
 b4 = bar(1.25, N_TANK_all.Oil,'BarWidth',0.1);
 b4.FaceColor = 'k';
 
-% dy = 20000;
-% c = num2str(N_TANK_all.Oil,'%3.0f');
-% text(1.25, double(N_TANK_all.Oil)+dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
+dy = 20000;
+c = num2str(N_TANK_all.Oil,'%3.0f');
+text(1.25, double(N_TANK_all.Oil)+dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
 
         ylim([0 600000]);
         xlim([0 2]);
@@ -248,10 +248,10 @@ axes(ha(2));
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
            
-%         dy = 8;
-%         label = num2str((study.oil_int_EF/(1 - control_rate_flash.oil)),'%3.2f'); c = cellstr(label);
-%         text(0.75, double((study.oil_int_EF/(1 - control_rate_flash.oil)))*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
-%         
+        dy = 8;
+        label = num2str((study.oil_int_EF/(1 - control_rate_flash.oil)),'%3.2f'); c = cellstr(label);
+        text(0.75, double((study.oil_int_EF/(1 - control_rate_flash.oil)))*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
+        
     plot_color = 'k';        
     
 		Prciles = prctile(EPA_VENT.Oil,[2.5 50 97.5]);
@@ -273,9 +273,9 @@ axes(ha(2));
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
            
-%         dy = 10;
-%         label = num2str(Meen,'%3.2f'); c = cellstr(label);
-%         text(1.25, double(Meen)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
+        dy = 10;
+        label = num2str(Meen,'%3.2f'); c = cellstr(label);
+        text(1.25, double(Meen)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
        
 % Flash Control rate
 
@@ -286,9 +286,9 @@ axes(ha(2));
         ln.MarkerFaceColor = plot_color;
         ln.MarkerSize = 6;
        
-%         dy = 2;
-%         label = num2str(1 - control_rate_flash.oil,'%3.2f'); c = num2str(1 - control_rate_flash.oil);
-%         text(1.75, double(1 - control_rate_flash.oil)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
+        dy = 2;
+        label = num2str(1 - control_rate_flash.oil,'%3.2f'); c = num2str(1 - control_rate_flash.oil);
+        text(1.75, double(1 - control_rate_flash.oil)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
 
      plot_color = 'k';   
      
@@ -297,9 +297,9 @@ axes(ha(2));
         ln.MarkerFaceColor = plot_color;
         ln.MarkerSize = 6;
        
-%         dy = 2;
-%         label = num2str(1 - EPA_control_rate_flash.oil,'%3.2f'); c = num2str(1 - EPA_control_rate_flash.oil);
-%         text(2.25, double(1 - EPA_control_rate_flash.oil)*dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
+        dy = 2;
+        label = num2str(1 - EPA_control_rate_flash.oil,'%3.2f'); c = num2str(1 - EPA_control_rate_flash.oil);
+        text(2.25, double(1 - EPA_control_rate_flash.oil)*dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
 
         set(gca,'yscale','log')
 
@@ -341,10 +341,10 @@ axes(ha(3));
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
            
-%         dy = 15;
-%         label = num2str(study.oil_unint_EF/frac_loss_vent.oil,'%3.2f'); c = cellstr(label);
-%         text(0.75, double(study.oil_unint_EF/frac_loss_vent.oil)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
-%         
+        dy = 15;
+        label = num2str(study.oil_unint_EF/frac_loss_vent.oil,'%3.2f'); c = cellstr(label);
+        text(0.75, double(study.oil_unint_EF/frac_loss_vent.oil)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
+        
     plot_color = 'k';        
     
 		Prciles = prctile(EPA_Dump.Oil,[2.5 50 97.5]);
@@ -366,9 +366,9 @@ axes(ha(3));
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
            
-%         dy = 20;
-%         label = num2str(Meen,'%3.2f'); c = cellstr(label);
-%         text(1.25, double(Meen)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
+        dy = 20;
+        label = num2str(Meen,'%3.2f'); c = cellstr(label);
+        text(1.25, double(Meen)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
         
  % Fraction loss rate
 
@@ -379,9 +379,9 @@ axes(ha(3));
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
        
-%         dy = 2;
-%         c = num2str(Meen,'%3.2f');
-%         text(1.75, double(Meen)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
+        dy = 2;
+        c = num2str(Meen,'%3.2f');
+        text(1.75, double(Meen)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
 
      plot_color = 'k';   
      
@@ -390,9 +390,9 @@ axes(ha(3));
         ln.MarkerFaceColor = plot_color;
         ln.MarkerSize = 6;
        
-%         dy = 2;
-%         c = num2str(EPA_frac_loss_vent.oil,'%3.2f');
-%         text(2.25, double(EPA_frac_loss_vent.oil)*dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
+        dy = 2;
+        c = num2str(EPA_frac_loss_vent.oil,'%3.2f');
+        text(2.25, double(EPA_frac_loss_vent.oil)*dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
 
         set(gca,'yscale','log')
 
@@ -426,18 +426,18 @@ b1 = bar(0.75, Total_Emissions_study.flash,'BarWidth',0.1);
 b1.FaceColor = StanfordRed;
 
 
-% dy = 1.5;
-% label = num2str(Total_Emissions_study.flash,'%3.1f'); c = cellstr(label);
-% text(0.75, double(Total_Emissions_study.flash)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
+dy = 1.5;
+label = num2str(Total_Emissions_study.flash,'%3.1f'); c = cellstr(label);
+text(0.75, double(Total_Emissions_study.flash)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
 
 hold on
 
 b2 = bar(1.25, Total_Emissions_EPA.flash,'BarWidth',0.1);
 b2.FaceColor = 'k';
 
-% dy = 1.5;
-% label = num2str(Total_Emissions_EPA.flash,'%3.1f');  c = cellstr(label);
-% text(1.25, double(Total_Emissions_EPA.flash)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
+dy = 1.5;
+label = num2str(Total_Emissions_EPA.flash,'%3.1f');  c = cellstr(label);
+text(1.25, double(Total_Emissions_EPA.flash)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
 
 % Total Emissions Vent
 
@@ -449,18 +449,18 @@ Total_Emissions_EPA.vent = Total_Emissions_EPA.vent * (365/1000000);
 b3 = bar(1.75, Total_Emissions_study.vent,'BarWidth',0.1);
 b3.FaceColor = StanfordRed;
 
-% dy = 1.5;
-% label = num2str(Total_Emissions_study.vent,'%3.1f');  c = cellstr(label);
-% text(1.75, double(Total_Emissions_study.vent)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
+dy = 1.5;
+label = num2str(Total_Emissions_study.vent,'%3.1f');  c = cellstr(label);
+text(1.75, double(Total_Emissions_study.vent)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
 
 hold on
 
 b4 = bar(2.25, Total_Emissions_EPA.vent,'BarWidth',0.1);
 b4.FaceColor = 'k';
 
-% dy = 1.5;
-% label = num2str(Total_Emissions_EPA.vent,'%3.1f');  c = cellstr(label);
-% text(2.25, double(Total_Emissions_EPA.vent)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
+dy = 1.5;
+label = num2str(Total_Emissions_EPA.vent,'%3.1f');  c = cellstr(label);
+text(2.25, double(Total_Emissions_EPA.vent)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
 
         xlim([0 3]);
         x = {'Intentional', 'Unintentional'};
@@ -479,7 +479,7 @@ b4.FaceColor = 'k';
 
       set(figure(1),'PaperUnits','inches','PaperPosition',[0 0 8 2.75])
       figure('Renderer', 'Painters')
-      saveas(figure(1),'tanks_oil_nolbl.emf','meta');
+      saveas(figure(1),'tanks_oil_lbl.emf','meta');
         
 %% Total emissions for tank vents figure
         
@@ -525,18 +525,18 @@ axes(ha(1));
 b3 = bar(0.75, study.gas_tanks,'BarWidth',0.1);
 b3.FaceColor = StanfordRed;
 
-% dy = 20000;
-% c = num2str(study.gas_tanks,'%3.0f');
-% text(0.75, double(study.gas_tanks)+dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
+dy = 20000;
+c = num2str(study.gas_tanks,'%3.0f');
+text(0.75, double(study.gas_tanks)+dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
 
 hold on
 
 b4 = bar(1.25, N_TANK_all.Gas,'BarWidth',0.1);
 b4.FaceColor = 'k';
 
-% dy = 40000;
-% c = num2str(N_TANK_all.Gas,'%3.0f');
-% text(1.25, double(N_TANK_all.Gas)+dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
+dy = 40000;
+c = num2str(N_TANK_all.Gas,'%3.0f');
+text(1.25, double(N_TANK_all.Gas)+dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
 
         ylim([0 500000]);
         xlim([0 2]);
@@ -575,10 +575,10 @@ axes(ha(2));
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
            
-%         dy = 5;
-%         label = num2str((study.gas_int_EF/(1 - control_rate_flash.gas)),'%3.2f'); c = cellstr(label);
-%         text(0.75, double((study.gas_int_EF/(1 - control_rate_flash.gas)))*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
-%         
+        dy = 5;
+        label = num2str((study.gas_int_EF/(1 - control_rate_flash.gas)),'%3.2f'); c = cellstr(label);
+        text(0.75, double((study.gas_int_EF/(1 - control_rate_flash.gas)))*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
+        
     plot_color = 'k';        
     
 		Prciles = prctile(EPA_VENT.Gas,[2.5 50 97.5]);
@@ -600,10 +600,10 @@ axes(ha(2));
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
            
-%         dy = 10;
-%         label = num2str(Meen,'%3.2f'); c = cellstr(label);
-%         text(1.25, double(Meen)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
-%        
+        dy = 10;
+        label = num2str(Meen,'%3.2f'); c = cellstr(label);
+        text(1.25, double(Meen)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
+       
 % Flash Control rate
 
      plot_color = StanfordRed;   
@@ -612,10 +612,10 @@ axes(ha(2));
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
         ln.MarkerSize = 6;
-%        
-%         dy = 2;
-%         label = num2str(1-control_rate_flash.gas,'%3.2f'); c = num2str(1-control_rate_flash.gas);
-%         text(1.75, double(1-control_rate_flash.gas)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
+       
+        dy = 2;
+        label = num2str(1-control_rate_flash.gas,'%3.2f'); c = num2str(1-control_rate_flash.gas);
+        text(1.75, double(1-control_rate_flash.gas)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
 
      plot_color = 'k';   
      
@@ -624,9 +624,9 @@ axes(ha(2));
         ln.MarkerFaceColor = plot_color;
         ln.MarkerSize = 6;
        
-%         dy = 2;
-%         label = num2str(1-EPA_control_rate_flash.gas,'%3.2f'); c = num2str(1-EPA_control_rate_flash.gas);
-%         text(2.25, double(1-EPA_control_rate_flash.gas)*dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
+        dy = 2;
+        label = num2str(1-EPA_control_rate_flash.gas,'%3.2f'); c = num2str(1-EPA_control_rate_flash.gas);
+        text(2.25, double(1-EPA_control_rate_flash.gas)*dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
 
         set(gca,'yscale','log')
 
@@ -668,10 +668,10 @@ axes(ha(3));
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
            
-%         dy = 15;
-%         label = num2str(study.gas_unint_EF/frac_loss_vent.gas,'%3.2f'); c = cellstr(label);
-%         text(0.75, double(study.gas_unint_EF/frac_loss_vent.gas)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
-%         
+        dy = 15;
+        label = num2str(study.gas_unint_EF/frac_loss_vent.gas,'%3.2f'); c = cellstr(label);
+        text(0.75, double(study.gas_unint_EF/frac_loss_vent.gas)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
+        
     plot_color = 'k';        
     
 		Prciles = prctile(EPA_Dump.Gas,[2.5 50 97.5]);
@@ -693,10 +693,10 @@ axes(ha(3));
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
            
-%         dy = 20;
-%         label = num2str(Meen,'%3.2f'); c = cellstr(label);
-%         text(1.25, double(Meen)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
-%         
+        dy = 20;
+        label = num2str(Meen,'%3.2f'); c = cellstr(label);
+        text(1.25, double(Meen)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
+        
  % Fraction loss rate
 
      plot_color = StanfordRed;   
@@ -705,10 +705,10 @@ axes(ha(3));
         ln = plot(1.75,Meen,'s');
         ln.MarkerEdgeColor = plot_color;
         ln.MarkerFaceColor = plot_color;
-%        
-%         dy = 2;
-%         c = num2str(Meen,'%3.2f');
-%         text(1.75, double(Meen)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
+       
+        dy = 2;
+        c = num2str(Meen,'%3.2f');
+        text(1.75, double(Meen)*dy, c,'Color','k', 'FontSize', 6, 'HorizontalAlignment', 'center');
 
      plot_color = 'k';   
      
@@ -717,9 +717,9 @@ axes(ha(3));
         ln.MarkerFaceColor = plot_color;
         ln.MarkerSize = 6;
        
-%         dy = 2;
-%         c = num2str(EPA_frac_loss_vent.gas,'%3.3f');
-%         text(2.25, double(EPA_frac_loss_vent.gas)*dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
+        dy = 2;
+        c = num2str(EPA_frac_loss_vent.gas,'%3.3f');
+        text(2.25, double(EPA_frac_loss_vent.gas)*dy, c,'Color',BrightRed, 'FontSize', 6, 'HorizontalAlignment', 'center');
 
         set(gca,'yscale','log')
 
@@ -753,18 +753,18 @@ b1 = bar(0.75, Total_Emissions_study.flash,'BarWidth',0.1);
 b1.FaceColor = StanfordRed;
 
 
-% dy = 1.5;
-% label = num2str(Total_Emissions_study.flash,'%3.1f'); c = cellstr(label);
-% text(0.75, double(Total_Emissions_study.flash)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
+dy = 1.5;
+label = num2str(Total_Emissions_study.flash,'%3.1f'); c = cellstr(label);
+text(0.75, double(Total_Emissions_study.flash)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
 
 hold on
 
 b2 = bar(1.25, Total_Emissions_EPA.flash,'BarWidth',0.1);
 b2.FaceColor = 'k';
 
-% dy = 1.5;
-% label = num2str(Total_Emissions_EPA.flash,'%3.1f');  c = cellstr(label);
-% text(1.25, double(Total_Emissions_EPA.flash)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
+dy = 1.5;
+label = num2str(Total_Emissions_EPA.flash,'%3.1f');  c = cellstr(label);
+text(1.25, double(Total_Emissions_EPA.flash)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
 
 % Total Emissions Vent
 
@@ -776,18 +776,18 @@ Total_Emissions_EPA.vent = Total_Emissions_EPA.vent * (365/1000000);
 b3 = bar(1.75, Total_Emissions_study.vent,'BarWidth',0.1);
 b3.FaceColor = StanfordRed;
 
-% dy = 1.5;
-% label = num2str(Total_Emissions_study.vent,'%3.1f');  c = cellstr(label);
-% text(1.75, double(Total_Emissions_study.vent)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
+dy = 1.5;
+label = num2str(Total_Emissions_study.vent,'%3.1f');  c = cellstr(label);
+text(1.75, double(Total_Emissions_study.vent)*dy, c,'Color','k','FontSize', 6, 'HorizontalAlignment', 'center');
 
 hold on
 
 b4 = bar(2.25, Total_Emissions_EPA.vent,'BarWidth',0.1);
 b4.FaceColor = 'k';
 
-% dy = 1.5;
-% label = num2str(Total_Emissions_EPA.vent,'%3.1f');  c = cellstr(label);
-% text(2.25, double(Total_Emissions_EPA.vent)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
+dy = 1.5;
+label = num2str(Total_Emissions_EPA.vent,'%3.1f');  c = cellstr(label);
+text(2.25, double(Total_Emissions_EPA.vent)*dy, c,'Color',BrightRed,'FontSize', 6, 'HorizontalAlignment', 'center');
 
         xlim([0 3]);
         x = {'Flash emissions', 'Vent emissions'};
@@ -803,9 +803,9 @@ b4.FaceColor = 'k';
         set(gca,'YMinorTick','on')
         set(gca, 'TickDir', 'out')  
 
-%       set(figure(3),'PaperUnits','inches','PaperPosition',[0 0 8 2.75])
-%       figure('Renderer', 'Painters')
-%       saveas(figure(3),'tanks_gas_nolbl.emf','meta');
+      set(figure(3),'PaperUnits','inches','PaperPosition',[0 0 8 2.75])
+      figure('Renderer', 'Painters')
+      saveas(figure(3),'tanks_gas_lbl.emf','meta');
     
 %% EPA Compare
 
@@ -968,7 +968,7 @@ set(t(4),'YLim',[0 0.1])
             %set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 2.75])
             %print('-djpeg','-r600','Fig_Tanks_v6_nlbl.jpg');
             
-            set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 3.50])
+%             set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 3.50])
             print('-djpeg','-r600','Fig_Tanks_v6_labld.jpg');
             
 %% PREPARING EQUIP VECS FOR DECOMPOSITIONS
@@ -1003,4 +1003,4 @@ set(t(4),'YLim',[0 0.1])
             
         
         x = 1;
-        save('Equipvecs_Set20.mat','study_well','study_sep','study_meter');
+        save('Equipvecs_Set21.mat','study_well','study_sep','study_meter');

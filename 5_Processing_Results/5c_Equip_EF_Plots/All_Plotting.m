@@ -479,5 +479,6 @@ end
 		axes(axis_a)
 		% link axes in case of zooming
 		linkaxes([axis_a axis_b])
-		set(s(12),'YLim',[0 0.04]) 
+		set(s(12),'YLim',[0 0.04])
+        x = 1;
 	end

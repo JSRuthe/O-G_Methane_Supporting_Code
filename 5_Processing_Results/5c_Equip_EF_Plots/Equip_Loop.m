@@ -47,7 +47,7 @@ clear; clc; close all;
 %% Settings
 
 all_equip = 0;
-tanks_only = 1;
+tanks_only = 0;
 figure_all = 0;
 EF_assess = 1;
 
@@ -56,7 +56,7 @@ n.trial = 25;
 
 %% LOAD DATA
 
-load('equipdata_Set20_25reals.mat')
+load('equipdata_Set21_25reals.mat')
 
 %% CALCULATIONS
 

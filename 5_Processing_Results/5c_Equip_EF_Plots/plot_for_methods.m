@@ -64,7 +64,8 @@ BrightRed = [177/255, 4/255, 14/255];
             pbaspect(axis_a, [1 1 1])
             pbaspect(axis_b, [1 1 1])
 
-            print('-djpeg','-r600','Equip_methods_1_v2.jpg');
+            %print('-djpeg','-r600','Equip_methods_1_v2.jpg');
+            print('-painters','-dmeta','Fig1_equip_gas.emf');
              figure(3)
             N = 80;
             start = 10^-5;
@@ -113,6 +114,6 @@ BrightRed = [177/255, 4/255, 14/255];
 %             set(axis_b, {'XColor', 'YColor'}, {StanfordRed, StanfordRed});
             pbaspect(axis_a, [1 1 1])
             pbaspect(axis_b, [1 1 1])
-
+            print('-painters','-dmeta','Fig1_equip_oil.emf');
 %            print('-djpeg','-r600','Equip_methods_2_v2.jpg');
-%             x = 1;
+             x = 1;
