@@ -28,38 +28,41 @@ n.trial = 100;
 %% Load data
 
 %   - Emissions totals:
-    load('Emissionsdata_set20_1-100.mat')
+    load('Emissionsdata_set21_1-100.mat')
     
-     load('sitedata_Set20_1-10.mat')
+     load('sitedata_Set21_1-10.mat')
      sitedata_1 = sitedata_All;
     % Runs 11 to 20
-     load('sitedata_Set20_11-20.mat')
+     load('sitedata_Set21_11-20.mat')
      sitedata_2 = sitedata_All;
     % Runs 21 to 30
-     load('sitedata_Set20_21-30.mat')
+     load('sitedata_Set21_21-30.mat')
      sitedata_3 = sitedata_All;
     % Runs 31 to 40        
-     load('sitedata_Set20_31-40.mat')
+     load('sitedata_Set21_31-40.mat')
      sitedata_4 = sitedata_All;
     % Runs 41 to 50
-     load('sitedata_Set20_41-50.mat')
+     load('sitedata_Set21_41-50.mat')
      sitedata_5 = sitedata_All;
     % Runs 51 to 60
-     load('sitedata_Set20_51-60.mat')
+     load('sitedata_Set21_51-60.mat')
      sitedata_6 = sitedata_All;
     % Runs 61 to 70
-     load('sitedata_Set20_61-70.mat')
+     load('sitedata_Set21_61-70.mat')
      sitedata_7 = sitedata_All;
     % Runs 71 to 80        
-     load('sitedata_Set20_71-80.mat')
+     load('sitedata_Set21_71-80.mat')
      sitedata_8 = sitedata_All;
     % Runs 81 to 90        
-     load('sitedata_Set20_81-90.mat')
+     load('sitedata_Set21_81-90.mat')
      sitedata_9 = sitedata_All;
     % Runs 91 to 100        
-     load('sitedata_Set20_91-100.mat')
+     load('sitedata_Set21_91-95.mat')
      sitedata_10 = sitedata_All;
-
+    % Runs 91 to 100        
+     load('sitedata_Set21_96-100.mat')
+     sitedata_11 = sitedata_All;
+     
 %   - Omara data
     omara_data=importdata('Omara_data_kgh_allsites.csv');
     omara_data(omara_data==0) = NaN;
@@ -71,18 +74,19 @@ n.trial = 100;
 % Site level data    
 
 % Vector size
-%   1: 546,600
-%   2: 546,568
-%   3: 546,731
-%   4: 545,997
-%   5: 545,146
-%   6: 545,672
-%   7: 547,380
-%   8: 545,179
-%   9: 546,971
-%   10:546,138
+%   1: 550,354
+%   2: 547007
+%   3: 548288
+%   4: 543589**
+%   5: 548119
+%   6: 546926
+%   7: 550321
+%   8: 546467
+%   9: 549043
+%   10:548748
+%   11:547119
 
-     sitedata_index = sitedata_5(:,1);
+     sitedata_index = sitedata_4(:,1);
 
      sitedata_1 = sitedata_1(:,[2 4 6],:);
      sitedata_2 = sitedata_2(:,[2 4 6],:);
@@ -94,6 +98,7 @@ n.trial = 100;
      sitedata_8 = sitedata_8(:,[2 4 6],:);
      sitedata_9 = sitedata_9(:,[2 4 6],:);
      sitedata_10 = sitedata_10(:,[2 4 6],:);
+     sitedata_11 = sitedata_11(:,[2 4 6],:);
      
      [length1,m,~] = size(sitedata_1);
      [length2,m,~] = size(sitedata_2);
@@ -105,20 +110,22 @@ n.trial = 100;
      [length8,m,~] = size(sitedata_8);
      [length9,m,~] = size(sitedata_9);
      [length10,m,~] = size(sitedata_10);  
+     [length11,m,~] = size(sitedata_11); 
      
 % Option 1: Reduce vectors in size
 
-	 sitedata_1 = sitedata_1(1:length5,:,:);
-	 sitedata_2 = sitedata_2(1:length5,:,:);
-	 sitedata_3 = sitedata_3(1:length5,:,:);
-     sitedata_4 = sitedata_4(1:length5,:,:);
-	 sitedata_6 = sitedata_6(1:length5,:,:);
-     sitedata_7 = sitedata_7(1:length5,:,:);
-	 sitedata_8 = sitedata_8(1:length5,:,:);
-	 sitedata_9 = sitedata_9(1:length5,:,:);
-	 sitedata_10 = sitedata_10(1:length5,:,:);
+	 sitedata_1 = sitedata_1(1:length4,:,:);
+	 sitedata_2 = sitedata_2(1:length4,:,:);
+	 sitedata_3 = sitedata_3(1:length4,:,:);
+     sitedata_5 = sitedata_4(1:length4,:,:);
+	 sitedata_6 = sitedata_6(1:length4,:,:);
+     sitedata_7 = sitedata_7(1:length4,:,:);
+	 sitedata_8 = sitedata_8(1:length4,:,:);
+	 sitedata_9 = sitedata_9(1:length4,:,:);
+	 sitedata_10 = sitedata_10(1:length4,:,:);
+     sitedata_11 = sitedata_11(1:length4,:,:);
      
-	sitedata_All = cat(3, sitedata_1,sitedata_2, sitedata_3, sitedata_4, sitedata_5, sitedata_6, sitedata_7, sitedata_8, sitedata_9, sitedata_10);
+	sitedata_All = cat(3, sitedata_1,sitedata_2, sitedata_3, sitedata_4, sitedata_5, sitedata_6, sitedata_7, sitedata_8, sitedata_9, sitedata_10, sitedata_11);
     sitedata_All = single(sitedata_All);
 
 % Omara data    

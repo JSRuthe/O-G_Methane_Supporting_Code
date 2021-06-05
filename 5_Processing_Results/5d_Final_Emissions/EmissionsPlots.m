@@ -24,8 +24,8 @@ EPA.All = sum(EPA.All,2);
 Study = EmissionsGas + EmissionsOil;
 
 GatherData.All = ...
-    [sum(Study(1:5,:))+sum(Study(8:9,:));...
-     Study(6,:) + Study(7,:)+ Study(16,:);...
+    [Study(6,:) + Study(7,:)+ Study(16,:);...
+     sum(Study(1:5,:))+sum(Study(8:9,:));...
      sum(Study(10:11,:));...
      Study(12,:);...
      Study(17,:);...
@@ -33,8 +33,8 @@ GatherData.All = ...
      Study(15,:)];
   
 EPAData = ...
-    [EPA.All(1);...
-     EPA.All(3);...
+    [EPA.All(3);...
+     EPA.All(1);...
      EPA.All(2);...
      EPA.All(5);...
      EPA.All(7);...
@@ -254,11 +254,11 @@ hold on
     % set original axes as active
     axes(axis_a)
  
-%       set(figure(1),'PaperUnits','inches','PaperPosition',[0 0 8 5.5])
+      set(figure(1),'PaperUnits','inches','PaperPosition',[0 0 8 5.5])
 %       figure('Renderer', 'Painters')
 %       saveas(figure(1),'Fig_1.emf','meta');
 
-%        print('-painters','-dmeta','Fig_main1.emf');
+        print('-painters','-dmeta','Fig_main1.emf');
       
 figure(2)
     h = histogram(sum(GatherData.All),'Normalization','probability','DisplayStyle','stairs','LineStyle','-','LineWidth',2,'EdgeColor',Sandstone);
@@ -284,7 +284,7 @@ figure(2)
 %       set(figure(2),'PaperUnits','inches','PaperPosition',[0 0 10 7.5])
 %       figure('Renderer', 'Painters')
 %       saveas(figure(2),'Fig_2.emf','meta');
-%       print('-painters','-dmeta','Fig_main2.emf');    
+       print('-painters','-dmeta','Fig_main2.emf');    
    
 figure(3)
     
@@ -301,7 +301,7 @@ figure(3)
     legend(b, {'This study','GHGI'}, 'Location','Best','FontSize',8);
     
     xlim([0.5 7.5]);    
-    Labels = {'Equipment Leaks','Tanks','Pneumatic Devices','Liquids Unloadings','Flare methane','Completions & Workovers','Methane slip'};
+    Labels = {'Tanks','Equipment Leaks','Pneumatic Devices','Liquids Unloadings','Flare methane','Completions & Workovers','Methane slip'};
     set(gca, 'xtick',1:7, 'XTickLabel', Labels,'XTickLabelRotation',25); 
     
     set(gca,'FontSize',8)
@@ -319,10 +319,10 @@ figure(3)
 %     % set original axes as active
 %     axes(axis_a)
    
-%       set(figure(3),'PaperUnits','inches','PaperPosition',[0 0 8 5.5])
+      set(figure(3),'PaperUnits','inches','PaperPosition',[0 0 8 5.5])
 %       figure('Renderer', 'Painters')
 %       saveas(figure(3),'Fig_3.emf','meta');
-%        print('-painters','-dmeta','Fig_main3.emf');
+        print('-painters','-dmeta','Fig_main3.emf');
       
 figure(4)
 hold on
@@ -357,6 +357,8 @@ uistack(oplot,'top')
     xlim([1 100])
     ylim([0.95 1.01])
     title('');
+    
+    print('-djpeg','-r600','Fig_SI_zoomCDF.jpg');
     
 % Full PDF
 figure(5)
@@ -466,6 +468,8 @@ hold on
     % set original axes as active
     axes(axis_a)
     
+    print('-djpeg','-r600','Fig_SI_distributions.jpg');
+    
 %% Plotting Omara Figure
 
 figure(6)
@@ -536,6 +540,9 @@ axis_b = axes('Position',get(axis_a,'Position'),'box','on','xtick',[],'ytick',[]
 % set original axes as active
 axes(axis_a)
 
+print('-djpeg','-r600','Fig_SI_Omara.jpg');
+
+
 for i = 2:100
 
          totals_vec(i - 1) = GatherData.SumTot(i);
@@ -568,6 +575,8 @@ xlabel('Monte Carlo Realizations');
 ylabel({'90% confidence interval for','\mu_{CH_{4}} [Tg CH_{4} yr^{-1}]'});
 set(gca,'FontSize',10)
 set(gca,'FontName','Arial')
+
+print('-djpeg','-r600','Fig_SI_MC.jpg');
 
  data_shuffle = datasample(GatherData.SumTot,100,'Replace',false);
 %  
